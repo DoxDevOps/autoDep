@@ -23,6 +23,7 @@ async def update_remote_host(user_name: str, ip_address: str) -> str:
         if isinstance(client,AsyncParamikoSSHClient):
             try:
                 await client.clsConnect()
+                apps = []
 
 
                 for app_dir in app_dirs:
@@ -30,6 +31,7 @@ async def update_remote_host(user_name: str, ip_address: str) -> str:
                     stdout = await client.send_command(git_pull_cmd)
 
                     result = stdout.splitlines()
+                    
                     collection.append(result)
 
                 client.close()
