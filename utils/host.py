@@ -60,6 +60,23 @@ async def update_remote_host(user_name: str, ip_address: str) -> str:
 
                         if "BHT-EMR-API" in app_dir:
                             bundle_dirs = await find_bundle_dir(client=client)
+                            for bundle_path in bundle_dirs:
+                                    bundle_install_cmd = f"cd {app_dir} && {bundle_path} install --local"
+                                    print(f"Trying bundle path {bundle_path}...")
+                                    print(bundle_install_cmd)
+
+                                    stdout = await client.send_command(bundle_install_cmd)
+                                    for line in stdout.read().decode('utf-8').splitlines():
+                                        print(line)
+                                    
+
+                                    # # Check the exit status of the command to see if it was successful
+                                    # if stdout.channel.recv_exit_status() == 0:
+                                    #     print(f"Successfully installed bundles using {bundle_path}")
+                                    #     break
+                                    # else:
+                                    #     print(f"Failed to install bundles using {bundle_path}")
+
                             print(bundle_dirs)
                             for instruction in instruction_set:
                                 _cmd_ = f"cd {app_dir} && {instruction}"
