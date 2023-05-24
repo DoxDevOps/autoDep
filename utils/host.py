@@ -81,19 +81,19 @@ async def update_remote_host(user_name: str, ip_address: str) -> str:
                         
 
                 # Reload Nginx
-                reload_nginx_cmd = "sudo service nginx reload"
+                reload_nginx_cmd = "sudo -n service nginx reload"
                 reload_nginx_output = await client.send_command(reload_nginx_cmd)
                 decoded_reload_nginx_output = reload_nginx_output.decode("utf-8")
                 print(f"Nginx Reload Output:\n{decoded_reload_nginx_output}")
                 
                 # Stop Puma service
-                stop_puma_cmd = "sudo service puma stop"
+                stop_puma_cmd = "sudo -n service puma stop"
                 stop_puma_output = await client.send_command(stop_puma_cmd)
                 decoded_stop_puma_output = stop_puma_output.decode("utf-8")
                 print(f"Puma Stop Output:\n{decoded_stop_puma_output}")
                 
                 # Start Puma service
-                start_puma_cmd = "sudo service puma start"
+                start_puma_cmd = "sudo -n service puma start"
                 start_puma_output = await client.send_command(start_puma_cmd)
                 decoded_start_puma_output = start_puma_output.decode("utf-8")
                 print(f"Puma Start Output:\n{decoded_start_puma_output}")
