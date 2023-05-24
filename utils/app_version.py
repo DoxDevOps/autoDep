@@ -11,7 +11,7 @@ apps = [
 
 instruction_set = [
     "bundle install --local",
-    "./bin/update_art_metadata.sh development"
+    "bin/rails db:migrate"
 ]
 
 def getTag(app_dir):
