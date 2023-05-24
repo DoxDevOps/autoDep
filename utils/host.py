@@ -4,7 +4,7 @@ import paramiko
 import os
 import asyncio
 from .net import AsyncParamikoSSHClient, RedisCls
-from .app_version import getTag, instruction_set, generate_git_url
+from .app_version import getTag, generate_git_url
 from .remote_exec_app import find_bundle_dir, find_ruby
 from dotenv import load_dotenv
 load_dotenv()
