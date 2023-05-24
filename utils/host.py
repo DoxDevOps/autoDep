@@ -28,10 +28,11 @@ async def update_remote_host(user_name: str, ip_address: str) -> str:
 
 
                 for app_dir in app_dirs:
-                    git_pull_cmd = f"cd {app_dir} && git pull http://{os.getenv('GIT_HOST')}:{generate_git_url(app_dir)}"
+                    git_pull_cmd = f"cd {app_dir} && git pull --tags http://{os.getenv('GIT_HOST')}:{generate_git_url(app_dir)}"
                     print(f"Git Pull Command: {git_pull_cmd}")
                     stdout = await client.send_command(git_pull_cmd)
-                    print(f"Git Pull Output:\n{stdout}")
+                    decoded_stdout = stdout.decode("utf-8")
+                    print(f"Git Pull Output:\n{decoded_stdout}")
 
                     result = stdout.splitlines()
 
@@ -39,13 +40,15 @@ async def update_remote_host(user_name: str, ip_address: str) -> str:
                     if tag:
                         git_checkout_cmd = f"cd {app_dir} && git checkout {tag} -f"
                         stdout = await client.send_command(git_checkout_cmd)
-                        print(f"Git Checkout Output:\n{stdout}")
+                        decoded_stdout = stdout.decode("utf-8")
+                        print(f"Git Checkout Output:\n{decoded_stdout}")
 
                         if "BHT-EMR-API" in app_dir:
                             for instruction in instruction_set:
                                 _cmd_ = f"cd {app_dir} && {instruction}"
                                 stdout = await client.send_command(_cmd_)
-                                print(f"{instruction} Output:\n{stdout}")
+                                decoded_stdout = stdout.decode("utf-8")
+                                print(f"{instruction} Output:\n{decoded_stdout}")
 
                     collection.append(result)
 
