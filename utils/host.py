@@ -66,7 +66,7 @@ async def update_remote_host(user_name: str, ip_address: str) -> str:
                                     print(bundle_install_cmd)
 
                                     stdout = await client.send_command(bundle_install_cmd)
-                                    for line in stdout.read().decode('utf-8').splitlines():
+                                    for line in stdout.decode('utf-8').splitlines():
                                         print(line)
                                     
 
