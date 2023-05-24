@@ -59,17 +59,18 @@ async def update_remote_host(user_name: str, ip_address: str) -> str:
                         print(f"Git Describe Output:\n{decoded_stdout}")
 
                         if "BHT-EMR-API" in app_dir:
-                            bundle_dirs = await find_bundle_dir(client=client)
-                            for bundle_path in bundle_dirs:
-                                    bundle_install_cmd = f"cd {app_dir} && {bundle_path} install --local"
-                                    print(f"Trying bundle path {bundle_path}...")
-                                    print(bundle_install_cmd)
+                            # bundle_dirs = await find_bundle_dir(client=client)
+                            # for bundle_path in bundle_dirs:
+                            #         bundle_install_cmd = f"cd {app_dir} && {bundle_path} install --local"
+                            #         print(f"Trying bundle path {bundle_path}...")
+                            #         print(bundle_install_cmd)
 
-                                    stdout = await client.send_command(bundle_install_cmd)
-                                    for line in stdout.decode('utf-8').splitlines():
-                                        print(line)
+                            #         stdout = await client.send_command(bundle_install_cmd)
+                            #         for line in stdout.decode('utf-8').splitlines():
+                            #             print(line)
                                     
                             ruby_dirs = await find_ruby(client=client)
+                            print("#################################################")
                             print(ruby_dirs)
 
                     collection.append(result)
