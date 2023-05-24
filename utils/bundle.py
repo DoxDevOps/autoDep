@@ -1,5 +1,4 @@
 from .net import AsyncParamikoSSHClient
-import os
 import asyncio
 
 async def find_bundle_dir(client: AsyncParamikoSSHClient):
@@ -10,20 +9,25 @@ async def find_bundle_dir(client: AsyncParamikoSSHClient):
         command = f"find {home_dir} -name bundle"
 
         stdout = await client.send_command(command)
-        results = stdout.decode("utf-8").strip()
+        results = stdout.decode("utf-8").strip().split('\n')
 
-        return results
+        matching_dirs = []
+        rvm_rbenv_dirs = []
+        for bundle_dir in results:
+            command = f"grep -liE 'rvm|rbenv' {bundle_dir}/*"
+            stdout = await client.send_command(command)
+            lines = stdout.decode("utf-8").strip().split('\n')
+            rvm_rbenv_found = any(['rvm' in line.lower() or 'rbenv' in line.lower() for line in lines])
+            if rvm_rbenv_found:
+                rvm_rbenv_dirs.append(bundle_dir)
+            else:
+                matching_dirs.append(bundle_dir)
+
+        if rvm_rbenv_dirs:
+            return rvm_rbenv_dirs
+        else:
+            return matching_dirs
 
     except Exception as e:
         print(f"An error occurred in fn(find_bundle_dir): {str(e)}")
-    # results    = [result.strip() for result in results]
-    
-    # matching_dirs = []
-    # for bundle_dir in results:
-    #     command = f"grep -liE 'rvm|rbenv' {bundle_dir}/*"
-    #     stdout  = await client.send_command(command)
-    #     rvm_rbenv_found = any(['rvm' in line.lower() or 'rbenv' in line.lower() for line in stdout.readlines()])
-    #     if not rvm_rbenv_found:
-    #         matching_dirs.append(bundle_dir)
-    
-    # return matching_dirs
+        
