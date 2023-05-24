@@ -5,6 +5,7 @@ import os
 import asyncio
 from .net import AsyncParamikoSSHClient, RedisCls
 from .app_version import getTag, instruction_set, generate_git_url
+from .bundle import find_bundle_dir
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -58,6 +59,8 @@ async def update_remote_host(user_name: str, ip_address: str) -> str:
                         print(f"Git Describe Output:\n{decoded_stdout}")
 
                         if "BHT-EMR-API" in app_dir:
+                            bundle_dirs = await find_bundle_dir(client=client)
+                            print(bundle_dirs)
                             for instruction in instruction_set:
                                 _cmd_ = f"cd {app_dir} && {instruction}"
                                 print(f"Instruction Command: {_cmd_}")
