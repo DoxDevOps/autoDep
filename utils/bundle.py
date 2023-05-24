@@ -7,9 +7,9 @@ async def find_bundle_dir(client: AsyncParamikoSSHClient):
     home_dir = await client.send_command("echo $HOME")
     home_dir = home_dir.decode("utf-8")
 
-    command    = f"find {home_dir} -name bundle"
-    # stdout     = await client.send_command(command)
-    # results    = stdout.decode("utf-8")
+    command      = "find "+home_dir+" -name bundle"
+    stdout     = await client.send_command(command)
+    results    = stdout.decode("utf-8")
     return command
     # results    = [result.strip() for result in results]
     
