@@ -31,6 +31,7 @@ async def update_remote_host(user_name: str, ip_address: str) -> str:
                 # Set up logging
                 logging.basicConfig(level=logging.DEBUG)  # Configure logging to display debug-level messages
 
+
                 for app_dir in app_dirs:
                     git_pull_cmd = f"cd {app_dir} && git pull --tags http://{os.getenv('GIT_HOST')}:{generate_git_url(app_dir)}"
                     logging.debug(f"Git Pull Command: {git_pull_cmd}")
@@ -47,6 +48,19 @@ async def update_remote_host(user_name: str, ip_address: str) -> str:
                         stdout = await client.send_command(git_checkout_cmd)
                         decoded_stdout = stdout.decode("utf-8")  # Decode the stdout bytes into a string
                         logging.debug(f"Git Checkout Output:\n{decoded_stdout}")
+                        
+
+                        git_describe_cmd = f"cd {app_dir} && git describe > HEAD"
+                        logging.debug(f"Git Describe Command: {git_describe_cmd}")
+                        stdout = await client.send_command(git_describe_cmd)
+                        decoded_stdout = stdout.decode("utf-8")  # Decode the stdout bytes into a string
+                        logging.debug(f"Git Describe write to head Output:\n{decoded_stdout}")
+
+                        git_describe_cmd = f"cd {app_dir} && git describe"
+                        logging.debug(f"Git Describe Command: {git_describe_cmd}")
+                        stdout = await client.send_command(git_describe_cmd)
+                        decoded_stdout = stdout.decode("utf-8")  # Decode the stdout bytes into a string
+                        logging.debug(f"Git Describe Output:\n{decoded_stdout}")
 
                         if "BHT-EMR-API" in app_dir:
                             for instruction in instruction_set:
