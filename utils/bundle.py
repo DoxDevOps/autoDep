@@ -8,6 +8,7 @@ async def find_bundle_dir(client: AsyncParamikoSSHClient):
     home_dir = home_dir.decode("utf-8")
 
     command      = "find "+home_dir+" -name bundle"
+    print(command)
     stdout     = await client.send_command(command)
     results    = stdout.decode("utf-8")
     return command
