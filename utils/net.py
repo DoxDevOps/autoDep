@@ -45,6 +45,8 @@ class AsyncParamikoSSHClient(paramiko.SSHClient):
     async def send_command(self, command):
         channel = self.exec_command(command)
         stdin, stdout, stderr = channel
+        decoded_stderr = stderr.decode("utf-8")  # Decode the stdout bytes into a string
+        print(f"Git Pull Output:\n{decoded_stderr}")
         output = stdout.read()
         # self.close()
         return output
