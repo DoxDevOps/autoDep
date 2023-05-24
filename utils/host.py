@@ -29,6 +29,7 @@ async def update_remote_host(user_name: str, ip_address: str) -> str:
 
                 for app_dir in app_dirs:
                     git_pull_cmd = f"cd {app_dir} && git pull git://{os.getenv('GIT_HOST')}:{app_dir}"
+                    print(git_pull_cmd)
                     stdout = await client.send_command(git_pull_cmd)
                     print(stdout)
 

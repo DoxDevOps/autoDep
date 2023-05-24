@@ -12,7 +12,7 @@ def update_host(ip_address: str, user_name: str, headers: dict) -> bool:
     print(details)
 
     data = {
-        "10.40.30.3": ip_address
+        "ip_address": "10.40.30.3"
         }
 
     try:
