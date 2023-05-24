@@ -39,6 +39,8 @@ async def update_remote_host(user_name: str, ip_address: str) -> str:
 
                     tag = getTag(app_dir=app_dir)
                     if tag:
+
+                        # Perform Git operations
                         git_checkout_cmd = f"cd {app_dir} && git checkout {tag} -f"
                         print(f"Git Checkout Command: {git_checkout_cmd}")
                         stdout = await client.send_command(git_checkout_cmd)
@@ -77,6 +79,25 @@ async def update_remote_host(user_name: str, ip_address: str) -> str:
                                 stdout = await client.send_command(migration_cmd)
                                 for line in stdout.decode('utf-8').splitlines():
                                     print(line)
+                        
+
+                        # Reload Nginx
+                        reload_nginx_cmd = "service nginx reload"
+                        reload_nginx_output = await client.send_command(reload_nginx_cmd)
+                        decoded_reload_nginx_output = reload_nginx_output.decode("utf-8")
+                        print(f"Nginx Reload Output:\n{decoded_reload_nginx_output}")
+                        
+                        # Stop Puma service
+                        stop_puma_cmd = "service puma stop"
+                        stop_puma_output = await client.send_command(stop_puma_cmd)
+                        decoded_stop_puma_output = stop_puma_output.decode("utf-8")
+                        print(f"Puma Stop Output:\n{decoded_stop_puma_output}")
+                        
+                        # Start Puma service
+                        start_puma_cmd = "service puma start"
+                        start_puma_output = await client.send_command(start_puma_cmd)
+                        decoded_start_puma_output = start_puma_output.decode("utf-8")
+                        print(f"Puma Start Output:\n{decoded_start_puma_output}")
                             
 
                     collection.append(result)
