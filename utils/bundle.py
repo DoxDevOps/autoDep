@@ -4,7 +4,7 @@ import os
 async def find_bundle_dir(client: AsyncParamikoSSHClient):
 
 
-    home_dir = await client.send_command("echo $HOME")[1].read().decode().strip()
+    home_dir = await client.send_command("echo $HOME")
     home_dir = home_dir.decode("utf-8")
 
     bundle_dir = os.path.join(home_dir)
