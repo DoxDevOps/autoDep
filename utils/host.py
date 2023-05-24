@@ -41,7 +41,7 @@ async def update_remote_host(user_name: str, ip_address: str) -> str:
                         git_checkout_cmd = f"cd {app_dir} && git checkout {tag} -f"
                         print(git_checkout_cmd)
                         checkout_stdout = await client.send_command(git_checkout_cmd)
-                        checkout_decoded_stdout = checkout_stdout.decode("utf-8")
+                        checkout_decoded_stdout = checkout_stdout
                         print(f"Git Checkout Output:\n{checkout_decoded_stdout}")
 
                         # if "BHT-EMR-API" in app_dir:
