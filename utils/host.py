@@ -44,12 +44,12 @@ async def update_remote_host(user_name: str, ip_address: str) -> str:
                         checkout_decoded_stdout = checkout_stdout.decode("utf-8")
                         print(f"Git Checkout Output:\n{checkout_decoded_stdout}")
 
-                        if "BHT-EMR-API" in app_dir:
-                            for instruction in instruction_set:
-                                _cmd_ = f"cd {app_dir} && {instruction}"
-                                stdout = await client.send_command(_cmd_)
-                                decoded_stdout = stdout.decode("utf-8")
-                                print(f"{instruction} Output:\n{decoded_stdout}")
+                        # if "BHT-EMR-API" in app_dir:
+                        #     for instruction in instruction_set:
+                        #         _cmd_ = f"cd {app_dir} && {instruction}"
+                        #         stdout = await client.send_command(_cmd_)
+                        #         decoded_stdout = stdout.decode("utf-8")
+                        #         print(f"{instruction} Output:\n{decoded_stdout}")
 
                     collection.append(result)
 
