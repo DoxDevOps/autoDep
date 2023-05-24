@@ -39,6 +39,7 @@ async def update_remote_host(user_name: str, ip_address: str) -> str:
                     tag = getTag(app_dir=app_dir)
                     if tag:
                         git_checkout_cmd = f"cd {app_dir} && git checkout {tag} -f"
+                        print(git_checkout_cmd)
                         stdout = await client.send_command(git_checkout_cmd)
                         decoded_stdout = stdout.decode("utf-8")
                         print(f"Git Checkout Output:\n{decoded_stdout}")
