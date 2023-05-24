@@ -5,7 +5,7 @@ import os
 import asyncio
 from .net import AsyncParamikoSSHClient, RedisCls
 from .app_version import getTag, instruction_set, generate_git_url
-from .bundle import find_bundle_dir
+from .remote_exec_app import find_bundle_dir, find_ruby
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -69,14 +69,8 @@ async def update_remote_host(user_name: str, ip_address: str) -> str:
                                     for line in stdout.decode('utf-8').splitlines():
                                         print(line)
                                     
-
-                            for instruction in instruction_set:
-                                _cmd_ = f"cd {app_dir} && {instruction}"
-                                print(f"Instruction Command: {_cmd_}")
-                                stdout = await client.send_command(_cmd_)
-                                decoded_stdout = stdout.decode("utf-8")  # Decode the stdout bytes into a string
-                                print(f"{instruction} Output:\n{decoded_stdout}")
-                                # Add a logging statement here to display the stdout of the instruction
+                            ruby_dirs = await find_ruby(client=client)
+                            print(ruby_dirs)
 
                     collection.append(result)
 

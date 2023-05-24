@@ -30,4 +30,18 @@ async def find_bundle_dir(client: AsyncParamikoSSHClient):
 
     except Exception as e:
         print(f"An error occurred in fn(find_bundle_dir): {str(e)}")
+
+async def find_ruby(client: AsyncParamikoSSHClient):
+    try:
+        home_dir = await client.send_command("echo $HOME")
+        home_dir = home_dir.decode("utf-8").strip()
+
+        command = f"find {home_dir} -name ruby"
+
+        stdout = await client.send_command(command)
+        results = stdout.decode("utf-8").strip().split('\n')
+        return results
+    
+    except Exception as e:
+        print(f"An error occurred in fn(find_ruby): {str(e)}")
         
