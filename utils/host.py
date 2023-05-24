@@ -4,6 +4,7 @@ import paramiko
 import os
 import asyncio
 from .net import AsyncParamikoSSHClient, RedisCls
+from app_version import getTag, instruction_set
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -29,8 +30,21 @@ async def update_remote_host(user_name: str, ip_address: str) -> str:
                 for app_dir in app_dirs:
                     git_pull_cmd = f"cd {app_dir} && git pull git://{os.getenv('GIT_HOST')}:{app_dir}"
                     stdout = await client.send_command(git_pull_cmd)
+                    print(stdout)
 
                     result = stdout.splitlines()
+
+                    tag = getTag(app_dir=app_dir)
+                    if tag:
+                        git_checkout_cmd = f"cd {app_dir} && git checkout {tag} -f"
+                        stdout = await client.send_command(git_checkout_cmd)
+                        print(stdout)
+
+                        if "BHT-EMR-API" in app_dir:
+                            for instruction in instruction_set:
+                                _cmd_ = f"cd {app_dir} && {instruction}"
+                                stdout = await client.send_command(_cmd_)
+                                print(stdout)
                     
                     collection.append(result)
 
