@@ -70,14 +70,6 @@ async def update_remote_host(user_name: str, ip_address: str) -> str:
                                         print(line)
                                     
 
-                                    # # Check the exit status of the command to see if it was successful
-                                    # if stdout.channel.recv_exit_status() == 0:
-                                    #     print(f"Successfully installed bundles using {bundle_path}")
-                                    #     break
-                                    # else:
-                                    #     print(f"Failed to install bundles using {bundle_path}")
-
-                            print(bundle_dirs)
                             for instruction in instruction_set:
                                 _cmd_ = f"cd {app_dir} && {instruction}"
                                 print(f"Instruction Command: {_cmd_}")

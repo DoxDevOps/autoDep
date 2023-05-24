@@ -10,7 +10,6 @@ apps = [
     ]
 
 instruction_set = [
-    "bundle install --local",
     "bin/rails db:migrate"
 ]
 
