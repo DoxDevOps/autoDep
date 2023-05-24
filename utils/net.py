@@ -45,7 +45,7 @@ class AsyncParamikoSSHClient(paramiko.SSHClient):
     async def send_command(self, command):
         channel = self.exec_command(command)
         stdin, stdout, stderr = channel
-        decoded_stderr = stderr.read()  # Decode the stdout bytes into a string
+        decoded_stderr = stderr.read().decode("utf-8")  # Decode the stdout bytes into a string
         print(f"ERRor:\n{decoded_stderr}")
         output = stdout.read()
         # self.close()
