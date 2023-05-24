@@ -34,7 +34,7 @@ async def update_remote_host(user_name: str, ip_address: str) -> str:
                     git_pull_decoded_stdout = git_pull_stdout.decode("utf-8")
                     print(f"Git Pull Output:\n{git_pull_decoded_stdout}")
 
-                    result = stdout.splitlines()
+                    result = git_pull_stdout.splitlines()
 
                     tag = getTag(app_dir=app_dir)
                     if tag:
