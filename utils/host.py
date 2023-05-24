@@ -4,7 +4,7 @@ import paramiko
 import os
 import asyncio
 from .net import AsyncParamikoSSHClient, RedisCls
-from app_version import getTag, instruction_set
+from .app_version import getTag, instruction_set
 from dotenv import load_dotenv
 load_dotenv()
 
