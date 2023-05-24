@@ -9,7 +9,7 @@ def update_host(ip_address: str, user_name: str, headers: dict) -> bool:
 
     details = asyncio.run(host.update_remote_host(user_name, ip_address))
 
-    print(details)
+    
 
     data = {
         "ip_address": "10.40.30.3"
