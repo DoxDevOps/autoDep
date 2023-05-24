@@ -9,10 +9,6 @@ apps = [
         },
     ]
 
-instruction_set = [
-    "bin/rails db:migrate"
-]
-
 def getTag(app_dir):
     for app in apps:
         if  app["app_name"] in app_dir:
