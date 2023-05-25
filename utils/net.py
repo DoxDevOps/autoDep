@@ -54,7 +54,6 @@ class AsyncParamikoSSHClient(paramiko.SSHClient):
     
     async def send_sudo_command(self, command):
         sudo_command = f"echo \"{self.password}\" | sudo -S "+command
-        print(sudo_command)
         channel = self.exec_command(sudo_command)
         stdin, stdout, stderr = channel
         decoded_stderr = stderr.read().decode("utf-8")  # Decode the stdout bytes into a string
