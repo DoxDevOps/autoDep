@@ -1,4 +1,5 @@
 from utils import imp_exp_func, host, decorators, net
+from utils.app_version import apps
 import os
 from dotenv import load_dotenv
 import asyncio
@@ -12,7 +13,8 @@ def update_host(ip_address: str, user_name: str, headers: dict) -> bool:
     
 
     data = {
-        "ip_address": "10.40.30.3"
+        "ip_address": "10.40.30.3",
+        "apps": apps
         }
 
     try:
