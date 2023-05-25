@@ -25,7 +25,6 @@ async def update_remote_host(user_name: str, ip_address: str) -> str:
         if isinstance(client,AsyncParamikoSSHClient):
             try:
                 await client.clsConnect()
-                apps = []
 
                 for app_dir in app_dirs:
                     git_pull_cmd = f"cd {app_dir} && git pull --tags http://{os.getenv('GIT_HOST')}:{generate_git_url(app_dir)}"
@@ -56,8 +55,11 @@ async def update_remote_host(user_name: str, ip_address: str) -> str:
                         git_describe_cmd = f"cd {app_dir} && git describe"
                         print(f"Git Describe Command: {git_describe_cmd}")
                         stdout = await client.send_command(git_describe_cmd)
-                        decoded_stdout = stdout.decode("utf-8")  # Decode the stdout bytes into a string
-                        print(f"Git Describe Output:\n{decoded_stdout}")
+                        git_describe_decoded_stdout = stdout.decode("utf-8")  # Decode the stdout bytes into a string
+                        print(f"Git Describe Output:\n{git_describe_decoded_stdout}")
+
+                        if git_describe_decoded_stdout:
+                            collection.append(tag)
 
                         if "BHT-EMR-API" in app_dir:
                             bundle_dirs = await find_bundle_dir(client=client)

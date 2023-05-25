@@ -26,3 +26,14 @@ def generate_git_url(directory_path):
     # Concatenate the base URL, repository name, and ".git" extension
     git_url = base_url + repository_name_with_extension
     return git_url
+
+def check_versions(version_list):
+    found_versions = set()
+    
+    for version in version_list:
+        for app in apps:
+            if app['app_version'] == version:
+                found_versions.add(version)
+                break
+    
+    return len(found_versions) == len(version_list)
