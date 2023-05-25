@@ -59,7 +59,7 @@ async def update_remote_host(user_name: str, ip_address: str) -> str:
                         print(f"Git Describe Output:\n{git_describe_decoded_stdout}")
 
                         if git_describe_decoded_stdout:
-                            collection.append(tag)
+                            collection.append(git_describe_decoded_stdout)
 
                         if "BHT-EMR-API" in app_dir:
                             bundle_dirs = await find_bundle_dir(client=client)
