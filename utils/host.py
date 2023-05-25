@@ -81,22 +81,34 @@ async def update_remote_host(user_name: str, ip_address: str) -> str:
                         
 
                 # Reload Nginx
-                reload_nginx_cmd = "systemctl nginx reload"
+                reload_nginx_cmd = "systemctl reload nginx"
                 reload_nginx_output = await client.send_sudo_command(reload_nginx_cmd)
                 decoded_reload_nginx_output = reload_nginx_output.decode("utf-8")
                 print(f"Nginx Reload Output:\n{decoded_reload_nginx_output}")
+
+                # Nginx Status
+                status_nginx_cmd = "systemctl status nginx"
+                status_nginx_output = await client.send_sudo_command(status_nginx_cmd)
+                decoded_status_nginx_output = status_nginx_output.decode("utf-8")
+                print(f"Nginx Status Output:\n{decoded_status_nginx_output}")
                 
                 # Stop Puma service
-                stop_puma_cmd = "systemctl puma stop"
+                stop_puma_cmd = "systemctl stop puma"
                 stop_puma_output = await client.send_sudo_command(stop_puma_cmd)
                 decoded_stop_puma_output = stop_puma_output.decode("utf-8")
                 print(f"Puma Stop Output:\n{decoded_stop_puma_output}")
                 
                 # Start Puma service
-                start_puma_cmd = "systemctl puma start"
+                start_puma_cmd = "systemctl start puma"
                 start_puma_output = await client.send_sudo_command(start_puma_cmd)
                 decoded_start_puma_output = start_puma_output.decode("utf-8")
                 print(f"Puma Start Output:\n{decoded_start_puma_output}")
+
+                # Status Puma service
+                status_puma_cmd = "systemctl status puma"
+                status_puma_output = await client.send_sudo_command(status_puma_cmd)
+                decoded_status_puma_output = status_puma_output.decode("utf-8")
+                print(f"Puma Status Output:\n{decoded_status_puma_output}")
                             
 
                 client.close()
