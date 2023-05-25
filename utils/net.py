@@ -51,6 +51,16 @@ class AsyncParamikoSSHClient(paramiko.SSHClient):
         output = stdout.read()
         # self.close()
         return output
+    
+    async def send_sudo_command(self, command):
+        channel = self.exec_command(f"echo \"{self.password}\" | sudo -S "+command)
+        stdin, stdout, stderr = channel
+        decoded_stderr = stderr.read().decode("utf-8")  # Decode the stdout bytes into a string
+        if decoded_stderr:
+            print(f"ERRor:\n{decoded_stderr}")
+        output = stdout.read()
+        # self.close()
+        return output
 
     async def receive_command(self, command):
         channel = await self.open_channel('session')
