@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Landing Page</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin-top: 50px;
+            max-width: 80%;
+        }
+
+        .top-banner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #1e1e1e;
+            color: #ffffff;
+            border-radius: 5px;
+        }
+
+        .top-banner h1 {
+            margin: 0;
+        }
+
+        .logout {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .dashboard {
+            flex-grow: 1;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="top-banner">
+            <h1>AudoDep</h1>
+            <a href="/" class="logout">Logout</a>
+        </div>
+        <div class="dashboard">
+            <h2>Dashboard Content</h2>
+            <!-- Add your dashboard content here -->
+        </div>
+    </div>
+</body>
+</html>
