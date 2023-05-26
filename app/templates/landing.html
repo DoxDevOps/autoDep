@@ -12,6 +12,11 @@
             max-width: 80%;
         }
 
+        #output {
+            font-size: 14px; /* Adjust the font size as needed */
+            font-family: "Arial", sans-serif; /* Use a modern font of your choice */
+        }
+
         .top-banner {
             display: flex;
             justify-content: space-between;
@@ -35,6 +40,18 @@
             flex-grow: 1;
             padding: 20px;
         }
+
+        .terminal-window {
+            background-color: #000000;
+            color: #00ff00;
+            padding: 10px;
+            height: 540px;
+            overflow-y: scroll;
+        }
+
+        .terminal-window pre {
+            margin: 0;
+        }
     </style>
 </head>
 <body>
@@ -49,6 +66,9 @@
                 {% if process_running %}
                     <button type="submit" name="stop">Stop</button>
                     <p>Process is running...</p>
+                    <div class="terminal-window">
+                        <pre id="output"></pre>
+                    </div>
                 {% else %}
                     {% if process_started %}
                         <p>Process has stopped.</p>
@@ -58,5 +78,63 @@
             </form>
         </div>
     </div>
+    
+    <script>
+        var stream = new EventSource("/output_stream");
+        var startingCount = 0;
+        
+        stream.addEventListener("message", function(event) {
+          var outputContent = event.data;
+          
+        
+          // Check if the received message is "Starting"
+          if (outputContent === "Starting") {
+            startingCount++;
+        
+            // Close the event source connection when "Starting" is received for the second time
+            if (startingCount === 2) {
+              stream.close();
+              var new_stream = new EventSource("/output_current_stream");
+              var previousContent2 = ""; // Variable to store the previous outputContent2
+              
+              new_stream.addEventListener("message", function(event2) {
+                var outputContent2 = event2.data;
+                console.log(outputContent2);
+                
+                if (outputContent2 !== previousContent2) {
+                  previousContent2 = outputContent2; // Update the previousContent2
+                  
+                  var formattedContent2 = escapeHtml(outputContent2);
+                  document.getElementById("output").innerHTML += "<pre>" + formattedContent2 + "</pre>";
+                  var terminalWindow2 = document.querySelector(".terminal-window");
+                  terminalWindow2.scrollTop = terminalWindow2.scrollHeight;
+                }
+              });
+                 
+            }
+          }
+
+          if (startingCount < 2) {
+            var formattedContent = escapeHtml(outputContent);
+            document.getElementById("output").innerHTML += "<pre>" + formattedContent + "</pre>"
+            var terminalWindow = document.querySelector(".terminal-window");
+            terminalWindow.scrollTop = terminalWindow.scrollHeight
+          }
+
+        })
+        
+        function escapeHtml(unsafe) {
+          return unsafe
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+        }
+        
+                 
+    </script>
+    
+    
 </body>
 </html>

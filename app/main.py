@@ -1,11 +1,18 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from multiprocessing import Process, Value
-from autodeploy import init
+import time
+import os
+from flask import Response
+from flask_sse import sse
+from autodeploy import call_process
 
+# Global variables
 process = None
+clients = []
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
+
 
 @app.route('/', methods=['GET', 'POST'])
 def login():
@@ -28,12 +35,13 @@ def landing():
     if 'logged_in' in session and session['logged_in']:
         if request.method == 'POST':
             if 'start' in request.form:
+                session['process_running'] = True
                 start_process()
             elif 'stop' in request.form:
+                session['process_running'] = False
                 stop_process()
 
-        process_running_value = process.is_alive() if process is not None else False
-        return render_template('landing.html', process_running=process_running_value)
+        return render_template('landing.html', process_running=session.get('process_running', False))
     else:
         return redirect(url_for('login'))
 
@@ -42,23 +50,104 @@ def logout():
     session.pop('logged_in', None)
     return redirect(url_for('login'))
 
-def start_process():
-    global process
+def get_output_path():
+    # Get the directory path of the code file
+    dir_path = os.path.dirname(os.path.abspath(__file__))
+    output_path = os.path.join(dir_path, 'output.txt')
+    return output_path
 
+def start_process():
+    session['process_started'] = True
+    
+    global process
     if process is None or not process.is_alive():
         # Start the process if it's not already running or terminated
-        process = Process(target=init)
+        process = Process(target=call_process)
         process.start()
         session['process_running'] = True
 
 def stop_process():
-    global process
+    session['process_started'] = False
+    # Your code to stop the process
 
-    if process is not None and process.is_alive():
-        # Stop the process if it's running
+    # Terminate the process that monitors output changes
+    global process
+    if process:
         process.terminate()
         process.join()
-        session['process_running'] = False
+        process = None
+
+
+def send_output_changes(content):
+    # Iterate over connected clients and send the content to each client
+    for client in clients:
+        client.put(content)
+
+def read_output_changes():
+    output_path = get_output_path()
+    
+    with open(output_path, 'r') as file:
+        text = file.read()
+    
+    return text
+
+@app.route('/output_stream')
+def output_stream():
+    def stream():
+        with open(get_output_path(), 'r') as file:
+            while True:
+                line = file.readline()
+                if not line:
+                    break
+                yield 'data: {}\n\n'.format(line.strip())
+
+    # Return the SSE response
+    
+    return Response(stream(), mimetype='text/event-stream')
+
+
+def get_file_changes():
+    try:
+        with open(get_output_path(), 'r') as file:
+            lines = file.readlines()
+
+            print(len(lines))
+
+        # Check if the file has been modified
+        if len(lines) == 0:
+            return "No changes made to the file."
+
+        changes = []
+        for line in lines[-1:]:
+            line = line.strip()
+            if line:
+                changes.append(line)
+
+        if len(changes) == 0:
+            return "No changes made to the file."
+
+        return changes
+
+    except FileNotFoundError:
+        return "File not found."
+
+def stream_file_changes():
+    while True:
+        changes = get_file_changes()
+
+        if isinstance(changes, str):
+            yield f"data: {changes}\n\n"
+        else:
+            for change in changes:
+                yield f"data: {change}\n\n"
+
+        # Sleep for a specified interval (e.g., 1 second)
+        time.sleep(1)
+
+@app.route('/output_current_stream')
+def output_current_stream():
+    return Response(stream_file_changes(), mimetype='text/event-stream')
+
 
 if __name__ == '__main__':
     app.run(debug=True)

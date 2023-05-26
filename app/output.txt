@@ -1,0 +1,1025 @@
+Starting
+Git Pull Command: cd /var/www/BHT-EMR-API && git pull --tags http://10.44.0.65:3000/gitea/BHT-EMR-API.git
+ERRor:
+From http://10.44.0.65:3000/gitea/BHT-EMR-API
+ * branch            HEAD       -> FETCH_HEAD
+
+Git Pull Output:
+Updating c5dc946..fc29e71
+Fast-forward
+ app/controllers/api/v1/appointments_controller.rb  |   2 +-
+ app/services/anc_service/patient_visit_label.rb    |   2 +-
+ app/services/patient_service.rb                    |   2 +
+ db/sql/openmrs_metadata_1_7.sql                    |  80 ++++++++++-----------
+ vendor/cache/addressable-2.8.1.gem                 | Bin 0 -> 105984 bytes
+ vendor/cache/addressable-2.8.2.gem                 | Bin 106496 -> 0 bytes
+ vendor/cache/concurrent-ruby-1.1.10.gem            | Bin 0 -> 360448 bytes
+ vendor/cache/concurrent-ruby-1.2.2.gem             | Bin 357888 -> 0 bytes
+ vendor/cache/digest-3.1.1.gem                      | Bin 40448 -> 0 bytes
+ vendor/cache/erubi-1.11.0.gem                      | Bin 0 -> 12288 bytes
+ vendor/cache/erubi-1.12.0.gem                      | Bin 12288 -> 0 bytes
+ vendor/cache/globalid-1.0.0.gem                    | Bin 0 -> 13824 bytes
+ vendor/cache/globalid-1.1.0.gem                    | Bin 13312 -> 0 bytes
+ vendor/cache/his_emr_api_lab-1.1.28.gem            | Bin 50176 -> 0 bytes
+ vendor/cache/his_emr_api_lab-1.1.29.gem            | Bin 0 -> 50688 bytes
+ vendor/cache/io-wait-0.3.0.gem                     | Bin 9216 -> 0 bytes
+ vendor/cache/loofah-2.19.0.gem                     | Bin 0 -> 32256 bytes
+ vendor/cache/loofah-2.19.1.gem                     | Bin 32768 -> 0 bytes
+ vendor/cache/mail-2.7.1.gem                        | Bin 0 -> 389120 bytes
+ vendor/cache/mail-2.8.1.gem                        | Bin 396800 -> 0 bytes
+ vendor/cache/mime-types-data-3.2022.0105.gem       | Bin 0 -> 196096 bytes
+ vendor/cache/mime-types-data-3.2023.0218.1.gem     | Bin 201216 -> 0 bytes
+ vendor/cache/mini_portile2-2.6.1.gem               | Bin 27136 -> 0 bytes
+ vendor/cache/msgpack-1.6.0.gem                     | Bin 0 -> 90624 bytes
+ vendor/cache/msgpack-1.7.0.gem                     | Bin 60928 -> 0 bytes
+ vendor/cache/mysql2-0.5.4.gem                      | Bin 0 -> 79360 bytes
+ vendor/cache/mysql2-0.5.5.gem                      | Bin 86528 -> 0 bytes
+ vendor/cache/net-imap-0.2.2.gem                    | Bin 37888 -> 0 bytes
+ vendor/cache/net-pop-0.1.2.gem                     | Bin 14336 -> 0 bytes
+ vendor/cache/net-protocol-0.1.2.gem                | Bin 10752 -> 0 bytes
+ vendor/cache/net-smtp-0.3.0.gem                    | Bin 14848 -> 0 bytes
+ .../{passenger-6.0.17.gem => passenger-6.0.15.gem} | Bin 8290304 -> 8256000 bytes
+ vendor/cache/power_assert-2.0.2.gem                | Bin 0 -> 15360 bytes
+ vendor/cache/power_assert-2.0.3.gem                | Bin 15360 -> 0 bytes
+ vendor/cache/rack-2.2.5.gem                        | Bin 0 -> 151552 bytes
+ vendor/cache/rack-2.2.6.4.gem                      | Bin 152064 -> 0 bytes
+ vendor/cache/rack-cors-1.1.1.gem                   | Bin 0 -> 53760 bytes
+ vendor/cache/rack-cors-2.0.1.gem                   | Bin 55296 -> 0 bytes
+ vendor/cache/rack-test-2.0.2.gem                   | Bin 0 -> 21504 bytes
+ vendor/cache/rack-test-2.1.0.gem                   | Bin 20992 -> 0 bytes
+ vendor/cache/rails-html-sanitizer-1.4.3.gem        | Bin 0 -> 17920 bytes
+ vendor/cache/rails-html-sanitizer-1.5.0.gem        | Bin 19456 -> 0 bytes
+ vendor/cache/rspec-core-3.12.0.gem                 | Bin 0 -> 165888 bytes
+ vendor/cache/rspec-core-3.12.1.gem                 | Bin 165888 -> 0 bytes
+ vendor/cache/rspec-expectations-3.12.0.gem         | Bin 0 -> 87040 bytes
+ vendor/cache/rspec-expectations-3.12.2.gem         | Bin 87552 -> 0 bytes
+ vendor/cache/rspec-mocks-3.12.0.gem                | Bin 0 -> 80384 bytes
+ vendor/cache/rspec-mocks-3.12.5.gem                | Bin 81408 -> 0 bytes
+ vendor/cache/sprockets-4.1.1.gem                   | Bin 0 -> 82944 bytes
+ vendor/cache/sprockets-4.2.0.gem                   | Bin 82944 -> 0 bytes
+ vendor/cache/strscan-3.0.6.gem                     | Bin 15872 -> 0 bytes
+ vendor/cache/test-unit-3.5.5.gem                   | Bin 0 -> 92672 bytes
+ vendor/cache/test-unit-3.5.7.gem                   | Bin 93184 -> 0 bytes
+ vendor/cache/timeout-0.3.2.gem                     | Bin 8704 -> 0 bytes
+ vendor/cache/tzinfo-1.2.10.gem                     | Bin 0 -> 167936 bytes
+ vendor/cache/tzinfo-1.2.11.gem                     | Bin 166912 -> 0 bytes
+ 56 files changed, 44 insertions(+), 42 deletions(-)
+ create mode 100644 vendor/cache/addressable-2.8.1.gem
+ delete mode 100644 vendor/cache/addressable-2.8.2.gem
+ create mode 100644 vendor/cache/concurrent-ruby-1.1.10.gem
+ delete mode 100644 vendor/cache/concurrent-ruby-1.2.2.gem
+ delete mode 100644 vendor/cache/digest-3.1.1.gem
+ create mode 100644 vendor/cache/erubi-1.11.0.gem
+ delete mode 100644 vendor/cache/erubi-1.12.0.gem
+ create mode 100644 vendor/cache/globalid-1.0.0.gem
+ delete mode 100644 vendor/cache/globalid-1.1.0.gem
+ delete mode 100644 vendor/cache/his_emr_api_lab-1.1.28.gem
+ create mode 100644 vendor/cache/his_emr_api_lab-1.1.29.gem
+ delete mode 100644 vendor/cache/io-wait-0.3.0.gem
+ create mode 100644 vendor/cache/loofah-2.19.0.gem
+ delete mode 100644 vendor/cache/loofah-2.19.1.gem
+ create mode 100644 vendor/cache/mail-2.7.1.gem
+ delete mode 100644 vendor/cache/mail-2.8.1.gem
+ create mode 100644 vendor/cache/mime-types-data-3.2022.0105.gem
+ delete mode 100644 vendor/cache/mime-types-data-3.2023.0218.1.gem
+ delete mode 100644 vendor/cache/mini_portile2-2.6.1.gem
+ create mode 100644 vendor/cache/msgpack-1.6.0.gem
+ delete mode 100644 vendor/cache/msgpack-1.7.0.gem
+ create mode 100644 vendor/cache/mysql2-0.5.4.gem
+ delete mode 100644 vendor/cache/mysql2-0.5.5.gem
+ delete mode 100644 vendor/cache/net-imap-0.2.2.gem
+ delete mode 100644 vendor/cache/net-pop-0.1.2.gem
+ delete mode 100644 vendor/cache/net-protocol-0.1.2.gem
+ delete mode 100644 vendor/cache/net-smtp-0.3.0.gem
+ rename vendor/cache/{passenger-6.0.17.gem => passenger-6.0.15.gem} (52%)
+ create mode 100644 vendor/cache/power_assert-2.0.2.gem
+ delete mode 100644 vendor/cache/power_assert-2.0.3.gem
+ create mode 100644 vendor/cache/rack-2.2.5.gem
+ delete mode 100644 vendor/cache/rack-2.2.6.4.gem
+ create mode 100644 vendor/cache/rack-cors-1.1.1.gem
+ delete mode 100644 vendor/cache/rack-cors-2.0.1.gem
+ create mode 100644 vendor/cache/rack-test-2.0.2.gem
+ delete mode 100644 vendor/cache/rack-test-2.1.0.gem
+ create mode 100644 vendor/cache/rails-html-sanitizer-1.4.3.gem
+ delete mode 100644 vendor/cache/rails-html-sanitizer-1.5.0.gem
+ create mode 100644 vendor/cache/rspec-core-3.12.0.gem
+ delete mode 100644 vendor/cache/rspec-core-3.12.1.gem
+ create mode 100644 vendor/cache/rspec-expectations-3.12.0.gem
+ delete mode 100644 vendor/cache/rspec-expectations-3.12.2.gem
+ create mode 100644 vendor/cache/rspec-mocks-3.12.0.gem
+ delete mode 100644 vendor/cache/rspec-mocks-3.12.5.gem
+ create mode 100644 vendor/cache/sprockets-4.1.1.gem
+ delete mode 100644 vendor/cache/sprockets-4.2.0.gem
+ delete mode 100644 vendor/cache/strscan-3.0.6.gem
+ create mode 100644 vendor/cache/test-unit-3.5.5.gem
+ delete mode 100644 vendor/cache/test-unit-3.5.7.gem
+ delete mode 100644 vendor/cache/timeout-0.3.2.gem
+ create mode 100644 vendor/cache/tzinfo-1.2.10.gem
+ delete mode 100644 vendor/cache/tzinfo-1.2.11.gem
+
+Git Pull Command: cd /var/www/HIS-Core && git pull --tags http://10.44.0.65:3000/gitea/HIS-Core.git
+ERRor:
+From http://10.44.0.65:3000/gitea/HIS-Core
+ * branch            HEAD       -> FETCH_HEAD
+
+Git Pull Output:
+Updating 69b4e12..f9807a4
+Fast-forward
+ css/app.34e0f9e1.css                                                  | 1 +
+ css/app.875e657d.css                                                  | 1 -
+ css/chunk-009421dc.135c42b3.css                                       | 1 +
+ css/chunk-0b046d66.c9e7a061.css                                       | 1 -
+ css/chunk-16acfa06.e2ae9dce.css                                       | 1 -
+ css/chunk-195c8694.86982ef3.css                                       | 1 +
+ css/chunk-27705420.195c17c5.css                                       | 1 +
+ css/chunk-2f26d4aa.941fe9d9.css                                       | 1 -
+ css/chunk-4a070d21.e7c98f3d.css                                       | 1 +
+ css/chunk-4fe3d07c.274ee4b8.css                                       | 1 -
+ css/{chunk-5bfa378c.8b4a4149.css => chunk-65090318.d0d6c844.css}      | 0
+ css/chunk-78d280a2.25f66f88.css                                       | 1 -
+ css/chunk-8cf92160.169c4422.css                                       | 1 +
+ css/{chunk-85e7b0c0.e7047053.css => chunk-d56e6082.81d2296f.css}      | 2 +-
+ index.html                                                            | 2 +-
+ js/TouchFormElement10.0d55dff6.js                                     | 2 ++
+ js/TouchFormElement10.0d55dff6.js.map                                 | 1 +
+ js/TouchFormElement10.37d774d8.js                                     | 2 --
+ js/TouchFormElement10.37d774d8.js.map                                 | 1 -
+ js/TouchFormElement11.6273d907.js                                     | 2 --
+ js/TouchFormElement11.6273d907.js.map                                 | 1 -
+ js/TouchFormElement11.6838af00.js                                     | 2 ++
+ js/TouchFormElement11.6838af00.js.map                                 | 1 +
+ js/TouchFormElement12.d7cbee57.js                                     | 2 ++
+ js/TouchFormElement12.d7cbee57.js.map                                 | 1 +
+ js/TouchFormElement12.fecde5f2.js                                     | 2 --
+ js/TouchFormElement12.fecde5f2.js.map                                 | 1 -
+ js/TouchFormElement14.619fc9f4.js                                     | 2 ++
+ js/TouchFormElement14.619fc9f4.js.map                                 | 1 +
+ js/TouchFormElement14.9359afa3.js                                     | 2 --
+ js/TouchFormElement14.9359afa3.js.map                                 | 1 -
+ js/{TouchFormElement18.cdf5e624.js => TouchFormElement18.99a1d5ea.js} | 2 +-
+ ...rmElement18.cdf5e624.js.map => TouchFormElement18.99a1d5ea.js.map} | 2 +-
+ js/TouchFormElement19.23e7055a.js                                     | 2 ++
+ js/TouchFormElement19.23e7055a.js.map                                 | 1 +
+ js/TouchFormElement19.abd27285.js                                     | 2 --
+ js/TouchFormElement19.abd27285.js.map                                 | 1 -
+ js/{TouchFormElement2.cb2ace62.js => TouchFormElement2.9943879c.js}   | 2 +-
+ ...FormElement2.cb2ace62.js.map => TouchFormElement2.9943879c.js.map} | 2 +-
+ js/TouchFormElement21.20c10c52.js                                     | 2 --
+ js/TouchFormElement21.20c10c52.js.map                                 | 1 -
+ js/TouchFormElement21.633f58f9.js                                     | 2 ++
+ js/TouchFormElement21.633f58f9.js.map                                 | 1 +
+ js/TouchFormElement24.267c4335.js.map                                 | 1 -
+ js/{TouchFormElement24.267c4335.js => TouchFormElement24.338eec67.js} | 4 ++--
+ js/TouchFormElement24.338eec67.js.map                                 | 1 +
+ js/TouchFormElement25.9b1c7b74.js                                     | 2 ++
+ js/TouchFormElement25.9b1c7b74.js.map                                 | 1 +
+ js/TouchFormElement25.d204c00d.js                                     | 2 --
+ js/TouchFormElement25.d204c00d.js.map                                 | 1 -
+ js/TouchFormElement28.9af35991.js                                     | 2 --
+ js/TouchFormElement28.9af35991.js.map                                 | 1 -
+ js/TouchFormElement28.e4a0a219.js                                     | 2 ++
+ js/TouchFormElement28.e4a0a219.js.map                                 | 1 +
+ js/TouchFormElement29.668d990f.js                                     | 2 --
+ js/TouchFormElement29.668d990f.js.map                                 | 1 -
+ js/TouchFormElement29.b7702d4b.js                                     | 2 ++
+ js/TouchFormElement29.b7702d4b.js.map                                 | 1 +
+ js/{TouchFormElement3.385cfa29.js => TouchFormElement3.5aa0086b.js}   | 2 +-
+ ...FormElement3.385cfa29.js.map => TouchFormElement3.5aa0086b.js.map} | 2 +-
+ js/TouchFormElement31.177f63f7.js                                     | 2 --
+ js/TouchFormElement31.177f63f7.js.map                                 | 1 -
+ js/TouchFormElement31.ac217671.js                                     | 2 ++
+ js/TouchFormElement31.ac217671.js.map                                 | 1 +
+ js/TouchFormElement33.08fdd443.js                                     | 2 ++
+ js/TouchFormElement33.08fdd443.js.map                                 | 1 +
+ js/TouchFormElement33.0db28997.js                                     | 2 --
+ js/TouchFormElement33.0db28997.js.map                                 | 1 -
+ js/TouchFormElement34.141b116f.js                                     | 2 --
+ js/TouchFormElement34.141b116f.js.map                                 | 1 -
+ js/TouchFormElement34.5acf4d2e.js                                     | 2 ++
+ js/TouchFormElement34.5acf4d2e.js.map                                 | 1 +
+ js/TouchFormElement35.53cc4a24.js                                     | 2 ++
+ js/TouchFormElement35.53cc4a24.js.map                                 | 1 +
+ js/TouchFormElement35.9f2f154b.js                                     | 2 --
+ js/TouchFormElement35.9f2f154b.js.map                                 | 1 -
+ js/TouchFormElement36.2caa5861.js                                     | 2 ++
+ js/TouchFormElement36.2caa5861.js.map                                 | 1 +
+ js/TouchFormElement36.31023436.js                                     | 2 --
+ js/TouchFormElement36.31023436.js.map                                 | 1 -
+ js/TouchFormElement37.36cfba83.js                                     | 2 ++
+ js/TouchFormElement37.36cfba83.js.map                                 | 1 +
+ js/TouchFormElement37.c45274dd.js                                     | 2 --
+ js/TouchFormElement37.c45274dd.js.map                                 | 1 -
+ js/TouchFormElement39.14d0f370.js                                     | 2 --
+ js/TouchFormElement39.14d0f370.js.map                                 | 1 -
+ js/TouchFormElement39.9717f919.js                                     | 2 ++
+ js/TouchFormElement39.9717f919.js.map                                 | 1 +
+ js/TouchFormElement43.41313e5d.js                                     | 2 --
+ js/TouchFormElement43.41313e5d.js.map                                 | 1 -
+ js/TouchFormElement43.6bca68dd.js                                     | 2 ++
+ js/TouchFormElement43.6bca68dd.js.map                                 | 1 +
+ js/TouchFormElement44.78eba0dd.js                                     | 2 --
+ js/TouchFormElement44.78eba0dd.js.map                                 | 1 -
+ js/TouchFormElement44.a9cfe00d.js                                     | 2 ++
+ js/TouchFormElement44.a9cfe00d.js.map                                 | 1 +
+ js/TouchFormElement46.c5b97069.js                                     | 2 ++
+ js/TouchFormElement46.c5b97069.js.map                                 | 1 +
+ js/TouchFormElement46.c7961881.js                                     | 2 --
+ js/TouchFormElement46.c7961881.js.map                                 | 1 -
+ js/{TouchFormElement50.99935c3d.js => TouchFormElement50.6c7cc879.js} | 4 ++--
+ ...rmElement50.99935c3d.js.map => TouchFormElement50.6c7cc879.js.map} | 2 +-
+ js/TouchFormElement51.0f460d73.js                                     | 2 --
+ js/TouchFormElement51.0f460d73.js.map                                 | 1 -
+ js/TouchFormElement51.3e2bfd8f.js                                     | 2 ++
+ js/TouchFormElement51.3e2bfd8f.js.map                                 | 1 +
+ js/TouchFormElement52.7b4779f2.js                                     | 2 --
+ js/TouchFormElement52.7b4779f2.js.map                                 | 1 -
+ js/TouchFormElement52.7d78e7bd.js                                     | 2 ++
+ js/TouchFormElement52.7d78e7bd.js.map                                 | 1 +
+ js/TouchFormElement7.07ce1906.js                                      | 2 ++
+ js/TouchFormElement7.07ce1906.js.map                                  | 1 +
+ js/TouchFormElement7.4d285930.js                                      | 2 --
+ js/TouchFormElement7.4d285930.js.map                                  | 1 -
+ js/app.a3fa33dc.js                                                    | 2 --
+ js/app.a3fa33dc.js.map                                                | 1 -
+ js/app.b66697d2.js                                                    | 2 ++
+ js/app.b66697d2.js.map                                                | 1 +
+ js/chunk-009421dc.1205eb3e.js                                         | 2 ++
+ js/chunk-009421dc.1205eb3e.js.map                                     | 1 +
+ js/chunk-021b8aa8.46dc5c4e.js                                         | 2 ++
+ js/chunk-021b8aa8.46dc5c4e.js.map                                     | 1 +
+ js/chunk-021b8aa8.80cad49c.js                                         | 2 --
+ js/chunk-021b8aa8.80cad49c.js.map                                     | 1 -
+ js/{chunk-04e668ba.bc72c7d9.js => chunk-04e668ba.b4b70bc0.js}         | 4 ++--
+ js/chunk-04e668ba.b4b70bc0.js.map                                     | 1 +
+ js/chunk-04e668ba.bc72c7d9.js.map                                     | 1 -
+ js/chunk-0659713c.1b53141d.js                                         | 2 --
+ js/chunk-0659713c.1b53141d.js.map                                     | 1 -
+ js/chunk-0659713c.4041ac94.js                                         | 2 ++
+ js/chunk-0659713c.4041ac94.js.map                                     | 1 +
+ js/chunk-0b046d66.8b35046a.js                                         | 2 --
+ js/chunk-0b046d66.8b35046a.js.map                                     | 1 -
+ js/chunk-0fb13f5f.3b7f4123.js                                         | 2 --
+ js/chunk-0fb13f5f.3b7f4123.js.map                                     | 1 -
+ js/chunk-0fb13f5f.b6bc3ac6.js                                         | 2 ++
+ js/chunk-0fb13f5f.b6bc3ac6.js.map                                     | 1 +
+ js/chunk-12b976ee.309b9483.js                                         | 2 --
+ js/chunk-12b976ee.309b9483.js.map                                     | 1 -
+ js/chunk-12b976ee.a4a0fe3a.js                                         | 2 ++
+ js/chunk-12b976ee.a4a0fe3a.js.map                                     | 1 +
+ js/chunk-13e9c9f8.0522f2a5.js                                         | 2 --
+ js/chunk-13e9c9f8.0522f2a5.js.map                                     | 1 -
+ js/chunk-13e9c9f8.7aba03be.js                                         | 2 ++
+ js/chunk-13e9c9f8.7aba03be.js.map                                     | 1 +
+ js/chunk-16acfa06.04b7942b.js                                         | 2 --
+ js/chunk-16acfa06.04b7942b.js.map                                     | 1 -
+ js/chunk-177a3565.07b0b7bd.js                                         | 2 ++
+ js/chunk-177a3565.07b0b7bd.js.map                                     | 1 +
+ js/chunk-177a3565.eb2deab5.js                                         | 2 --
+ js/chunk-177a3565.eb2deab5.js.map                                     | 1 -
+ js/{chunk-17d7986d.a5d3395e.js => chunk-17d7986d.00bd695e.js}         | 4 ++--
+ js/chunk-17d7986d.00bd695e.js.map                                     | 1 +
+ js/chunk-17d7986d.a5d3395e.js.map                                     | 1 -
+ js/chunk-195c8694.4b80c61e.js                                         | 2 ++
+ js/chunk-195c8694.4b80c61e.js.map                                     | 1 +
+ js/chunk-1b8878c3.50537032.js                                         | 2 --
+ js/chunk-1b8878c3.50537032.js.map                                     | 1 -
+ js/chunk-1b8878c3.b04c0a94.js                                         | 2 ++
+ js/chunk-1b8878c3.b04c0a94.js.map                                     | 1 +
+ js/chunk-23cae350.3539dd88.js.map                                     | 1 -
+ js/{chunk-23cae350.3539dd88.js => chunk-23cae350.b4ffd0f0.js}         | 4 ++--
+ js/chunk-23cae350.b4ffd0f0.js.map                                     | 1 +
+ js/{chunk-24c61e3e.f09b02e3.js => chunk-24c61e3e.860717b9.js}         | 4 ++--
+ js/chunk-24c61e3e.860717b9.js.map                                     | 1 +
+ js/chunk-24c61e3e.f09b02e3.js.map                                     | 1 -
+ js/chunk-2726be10.18293927.js.map                                     | 1 -
+ js/{chunk-2726be10.18293927.js => chunk-2726be10.429c1fd6.js}         | 4 ++--
+ js/chunk-2726be10.429c1fd6.js.map                                     | 1 +
+ js/chunk-27705420.29c96ab8.js                                         | 2 ++
+ js/chunk-27705420.29c96ab8.js.map                                     | 1 +
+ js/{chunk-2a175e60.ea4a2778.js => chunk-2a175e60.8bb2cd76.js}         | 4 ++--
+ js/chunk-2a175e60.8bb2cd76.js.map                                     | 1 +
+ js/chunk-2a175e60.ea4a2778.js.map                                     | 1 -
+ js/{chunk-2d0cbe29.e837e27f.js => chunk-2d0cbe29.d379d56d.js}         | 4 ++--
+ js/chunk-2d0cbe29.d379d56d.js.map                                     | 1 +
+ js/chunk-2d0cbe29.e837e27f.js.map                                     | 1 -
+ js/chunk-2d0e509e.1f309d93.js                                         | 2 ++
+ js/chunk-2d0e509e.1f309d93.js.map                                     | 1 +
+ js/{chunk-2d0e8fe4.8860e2d3.js => chunk-2d0e8fe4.3967e74e.js}         | 4 ++--
+ js/chunk-2d0e8fe4.3967e74e.js.map                                     | 1 +
+ js/chunk-2d0e8fe4.8860e2d3.js.map                                     | 1 -
+ js/chunk-2d207cfc.f89d37ed.js                                         | 2 ++
+ js/chunk-2d207cfc.f89d37ed.js.map                                     | 1 +
+ js/chunk-2e6cd8aa.27e9f35c.js                                         | 2 ++
+ js/chunk-2e6cd8aa.27e9f35c.js.map                                     | 1 +
+ js/chunk-2e6cd8aa.7a525606.js                                         | 2 --
+ js/chunk-2e6cd8aa.7a525606.js.map                                     | 1 -
+ js/chunk-2f26d4aa.e9718725.js                                         | 2 --
+ js/chunk-2f26d4aa.e9718725.js.map                                     | 1 -
+ js/chunk-312cb050.8f7a0422.js                                         | 2 --
+ js/chunk-312cb050.8f7a0422.js.map                                     | 1 -
+ js/chunk-312cb050.e05fff34.js                                         | 2 ++
+ js/chunk-312cb050.e05fff34.js.map                                     | 1 +
+ js/chunk-32292aa4.85821bc0.js                                         | 2 ++
+ js/chunk-32292aa4.85821bc0.js.map                                     | 1 +
+ js/chunk-32292aa4.a313975b.js                                         | 2 --
+ js/chunk-32292aa4.a313975b.js.map                                     | 1 -
+ js/chunk-3341b6b5.1ebf90ce.js                                         | 2 ++
+ js/chunk-3341b6b5.1ebf90ce.js.map                                     | 1 +
+ js/chunk-3341b6b5.3531c10c.js                                         | 2 --
+ js/chunk-3341b6b5.3531c10c.js.map                                     | 1 -
+ js/chunk-38b20952.53fc944a.js                                         | 2 --
+ js/chunk-38b20952.53fc944a.js.map                                     | 1 -
+ js/chunk-38b20952.5911c31a.js                                         | 2 ++
+ js/chunk-38b20952.5911c31a.js.map                                     | 1 +
+ js/chunk-396f5648.78422fa8.js.map                                     | 1 -
+ js/{chunk-396f5648.78422fa8.js => chunk-396f5648.d33b7c68.js}         | 4 ++--
+ js/chunk-396f5648.d33b7c68.js.map                                     | 1 +
+ js/chunk-3a966710.495940b4.js                                         | 2 ++
+ js/chunk-3a966710.495940b4.js.map                                     | 1 +
+ js/chunk-3a966710.c6f8d627.js                                         | 2 --
+ js/chunk-3a966710.c6f8d627.js.map                                     | 1 -
+ js/{chunk-3ae5de22.8652b990.js => chunk-3ae5de22.4898e1ce.js}         | 2 +-
+ js/{chunk-3ae5de22.8652b990.js.map => chunk-3ae5de22.4898e1ce.js.map} | 2 +-
+ js/chunk-3c642140.18ddf8bb.js                                         | 2 --
+ js/chunk-3c642140.18ddf8bb.js.map                                     | 1 -
+ js/chunk-3c642140.aa8605a3.js                                         | 2 ++
+ js/chunk-3c642140.aa8605a3.js.map                                     | 1 +
+ js/{chunk-3ef4c8ba.39293d0c.js => chunk-3ef4c8ba.ccac84fe.js}         | 4 ++--
+ js/{chunk-3ef4c8ba.39293d0c.js.map => chunk-3ef4c8ba.ccac84fe.js.map} | 2 +-
+ js/{chunk-4183a6cc.986e597d.js => chunk-4183a6cc.acce1f0c.js}         | 2 +-
+ js/{chunk-4183a6cc.986e597d.js.map => chunk-4183a6cc.acce1f0c.js.map} | 2 +-
+ js/chunk-41a9dd0a.64be98e9.js                                         | 2 ++
+ js/chunk-41a9dd0a.64be98e9.js.map                                     | 1 +
+ js/chunk-41a9dd0a.fb2f2376.js                                         | 2 --
+ js/chunk-41a9dd0a.fb2f2376.js.map                                     | 1 -
+ js/chunk-48a533fb.683f1643.js                                         | 2 ++
+ js/chunk-48a533fb.683f1643.js.map                                     | 1 +
+ js/chunk-48a533fb.89618e3b.js                                         | 2 --
+ js/chunk-48a533fb.89618e3b.js.map                                     | 1 -
+ js/chunk-4923dd30.d7c7b31f.js                                         | 2 --
+ js/chunk-4923dd30.d7c7b31f.js.map                                     | 1 -
+ js/chunk-4923dd30.ed37740b.js                                         | 2 ++
+ js/chunk-4923dd30.ed37740b.js.map                                     | 1 +
+ js/chunk-49711748.038fab6f.js.map                                     | 1 -
+ js/{chunk-49711748.038fab6f.js => chunk-49711748.3166af70.js}         | 4 ++--
+ js/chunk-49711748.3166af70.js.map                                     | 1 +
+ js/chunk-4a070d21.7456c81f.js                                         | 2 ++
+ js/chunk-4a070d21.7456c81f.js.map                                     | 1 +
+ js/{chunk-4c7d4cdd.6a25ff04.js => chunk-4c7d4cdd.7d634b70.js}         | 2 +-
+ js/{chunk-4c7d4cdd.6a25ff04.js.map => chunk-4c7d4cdd.7d634b70.js.map} | 2 +-
+ js/chunk-4e1cd824.700bc8c3.js                                         | 2 ++
+ js/chunk-4e1cd824.700bc8c3.js.map                                     | 1 +
+ js/chunk-4e1cd824.b900c995.js                                         | 2 --
+ js/chunk-4e1cd824.b900c995.js.map                                     | 1 -
+ js/chunk-4fe3d07c.a8082e7c.js                                         | 2 --
+ js/chunk-4fe3d07c.a8082e7c.js.map                                     | 1 -
+ js/chunk-515474f6.8fe215ae.js                                         | 2 --
+ js/chunk-515474f6.8fe215ae.js.map                                     | 1 -
+ js/chunk-515474f6.c9192330.js                                         | 2 ++
+ js/chunk-515474f6.c9192330.js.map                                     | 1 +
+ js/chunk-61f9fc74.74a138b8.js                                         | 2 ++
+ js/chunk-61f9fc74.74a138b8.js.map                                     | 1 +
+ js/chunk-61f9fc74.f691b8fb.js                                         | 2 --
+ js/chunk-61f9fc74.f691b8fb.js.map                                     | 1 -
+ js/chunk-625971b9.48ca17d9.js                                         | 2 ++
+ js/chunk-625971b9.48ca17d9.js.map                                     | 1 +
+ js/chunk-625971b9.961d9487.js                                         | 2 --
+ js/chunk-625971b9.961d9487.js.map                                     | 1 -
+ js/{chunk-5bfa378c.27832537.js => chunk-65090318.7513a75f.js}         | 4 ++--
+ js/{chunk-5bfa378c.27832537.js.map => chunk-65090318.7513a75f.js.map} | 2 +-
+ js/{chunk-67356a1a.bf8d33ed.js => chunk-67356a1a.bf24d326.js}         | 4 ++--
+ js/chunk-67356a1a.bf24d326.js.map                                     | 1 +
+ js/chunk-67356a1a.bf8d33ed.js.map                                     | 1 -
+ js/{chunk-74d31e01.69cc8f75.js => chunk-74d31e01.2d9bb351.js}         | 4 ++--
+ js/chunk-74d31e01.2d9bb351.js.map                                     | 1 +
+ js/chunk-74d31e01.69cc8f75.js.map                                     | 1 -
+ js/chunk-78d280a2.7a8e850d.js                                         | 2 --
+ js/chunk-78d280a2.7a8e850d.js.map                                     | 1 -
+ js/chunk-7f145fe7.bf13cb93.js                                         | 2 ++
+ js/chunk-7f145fe7.bf13cb93.js.map                                     | 1 +
+ js/chunk-7f145fe7.f78daf4b.js                                         | 2 --
+ js/chunk-7f145fe7.f78daf4b.js.map                                     | 1 -
+ js/chunk-85e7b0c0.e10946f0.js                                         | 2 --
+ js/chunk-85e7b0c0.e10946f0.js.map                                     | 1 -
+ js/chunk-8cf92160.4034c8f3.js                                         | 2 ++
+ js/chunk-8cf92160.4034c8f3.js.map                                     | 1 +
+ js/chunk-8f04b8cc.4f82b290.js.map                                     | 1 -
+ js/{chunk-8f04b8cc.4f82b290.js => chunk-8f04b8cc.6675905c.js}         | 4 ++--
+ js/chunk-8f04b8cc.6675905c.js.map                                     | 1 +
+ js/chunk-8f988722.0ca233ad.js                                         | 2 --
+ js/chunk-8f988722.0ca233ad.js.map                                     | 1 -
+ js/chunk-8f988722.ffe7f771.js                                         | 2 ++
+ js/chunk-8f988722.ffe7f771.js.map                                     | 1 +
+ js/{chunk-9872fe22.f791d162.js => chunk-9872fe22.6f62806e.js}         | 4 ++--
+ js/{chunk-9872fe22.f791d162.js.map => chunk-9872fe22.6f62806e.js.map} | 2 +-
+ js/chunk-9baa1fa4.26be8120.js                                         | 2 ++
+ js/chunk-9baa1fa4.26be8120.js.map                                     | 1 +
+ js/chunk-9baa1fa4.985f8c9b.js                                         | 2 --
+ js/chunk-9baa1fa4.985f8c9b.js.map                                     | 1 -
+ js/chunk-c78071a2.de8c345d.js                                         | 2 ++
+ js/chunk-c78071a2.de8c345d.js.map                                     | 1 +
+ js/chunk-c78071a2.e47150b2.js                                         | 2 --
+ js/chunk-c78071a2.e47150b2.js.map                                     | 1 -
+ js/chunk-d56e6082.b0c301ea.js                                         | 2 ++
+ js/chunk-d56e6082.b0c301ea.js.map                                     | 1 +
+ js/chunk-f4265cc6.8c292963.js                                         | 2 ++
+ js/chunk-f4265cc6.8c292963.js.map                                     | 1 +
+ js/chunk-f4265cc6.db2fe35c.js                                         | 2 --
+ js/chunk-f4265cc6.db2fe35c.js.map                                     | 1 -
+ js/{chunk-vendors.c37c7d70.js => chunk-vendors.83c3fa34.js}           | 4 ++--
+ js/{chunk-vendors.c37c7d70.js.map => chunk-vendors.83c3fa34.js.map}   | 2 +-
+ 303 files changed, 248 insertions(+), 242 deletions(-)
+ create mode 100644 css/app.34e0f9e1.css
+ delete mode 100644 css/app.875e657d.css
+ create mode 100644 css/chunk-009421dc.135c42b3.css
+ delete mode 100644 css/chunk-0b046d66.c9e7a061.css
+ delete mode 100644 css/chunk-16acfa06.e2ae9dce.css
+ create mode 100644 css/chunk-195c8694.86982ef3.css
+ create mode 100644 css/chunk-27705420.195c17c5.css
+ delete mode 100644 css/chunk-2f26d4aa.941fe9d9.css
+ create mode 100644 css/chunk-4a070d21.e7c98f3d.css
+ delete mode 100644 css/chunk-4fe3d07c.274ee4b8.css
+ rename css/{chunk-5bfa378c.8b4a4149.css => chunk-65090318.d0d6c844.css} (100%)
+ delete mode 100644 css/chunk-78d280a2.25f66f88.css
+ create mode 100644 css/chunk-8cf92160.169c4422.css
+ rename css/{chunk-85e7b0c0.e7047053.css => chunk-d56e6082.81d2296f.css} (51%)
+ create mode 100644 js/TouchFormElement10.0d55dff6.js
+ create mode 100644 js/TouchFormElement10.0d55dff6.js.map
+ delete mode 100644 js/TouchFormElement10.37d774d8.js
+ delete mode 100644 js/TouchFormElement10.37d774d8.js.map
+ delete mode 100644 js/TouchFormElement11.6273d907.js
+ delete mode 100644 js/TouchFormElement11.6273d907.js.map
+ create mode 100644 js/TouchFormElement11.6838af00.js
+ create mode 100644 js/TouchFormElement11.6838af00.js.map
+ create mode 100644 js/TouchFormElement12.d7cbee57.js
+ create mode 100644 js/TouchFormElement12.d7cbee57.js.map
+ delete mode 100644 js/TouchFormElement12.fecde5f2.js
+ delete mode 100644 js/TouchFormElement12.fecde5f2.js.map
+ create mode 100644 js/TouchFormElement14.619fc9f4.js
+ create mode 100644 js/TouchFormElement14.619fc9f4.js.map
+ delete mode 100644 js/TouchFormElement14.9359afa3.js
+ delete mode 100644 js/TouchFormElement14.9359afa3.js.map
+ rename js/{TouchFormElement18.cdf5e624.js => TouchFormElement18.99a1d5ea.js} (99%)
+ rename js/{TouchFormElement18.cdf5e624.js.map => TouchFormElement18.99a1d5ea.js.map} (99%)
+ create mode 100644 js/TouchFormElement19.23e7055a.js
+ create mode 100644 js/TouchFormElement19.23e7055a.js.map
+ delete mode 100644 js/TouchFormElement19.abd27285.js
+ delete mode 100644 js/TouchFormElement19.abd27285.js.map
+ rename js/{TouchFormElement2.cb2ace62.js => TouchFormElement2.9943879c.js} (99%)
+ rename js/{TouchFormElement2.cb2ace62.js.map => TouchFormElement2.9943879c.js.map} (99%)
+ delete mode 100644 js/TouchFormElement21.20c10c52.js
+ delete mode 100644 js/TouchFormElement21.20c10c52.js.map
+ create mode 100644 js/TouchFormElement21.633f58f9.js
+ create mode 100644 js/TouchFormElement21.633f58f9.js.map
+ delete mode 100644 js/TouchFormElement24.267c4335.js.map
+ rename js/{TouchFormElement24.267c4335.js => TouchFormElement24.338eec67.js} (77%)
+ create mode 100644 js/TouchFormElement24.338eec67.js.map
+ create mode 100644 js/TouchFormElement25.9b1c7b74.js
+ create mode 100644 js/TouchFormElement25.9b1c7b74.js.map
+ delete mode 100644 js/TouchFormElement25.d204c00d.js
+ delete mode 100644 js/TouchFormElement25.d204c00d.js.map
+ delete mode 100644 js/TouchFormElement28.9af35991.js
+ delete mode 100644 js/TouchFormElement28.9af35991.js.map
+ create mode 100644 js/TouchFormElement28.e4a0a219.js
+ create mode 100644 js/TouchFormElement28.e4a0a219.js.map
+ delete mode 100644 js/TouchFormElement29.668d990f.js
+ delete mode 100644 js/TouchFormElement29.668d990f.js.map
+ create mode 100644 js/TouchFormElement29.b7702d4b.js
+ create mode 100644 js/TouchFormElement29.b7702d4b.js.map
+ rename js/{TouchFormElement3.385cfa29.js => TouchFormElement3.5aa0086b.js} (98%)
+ rename js/{TouchFormElement3.385cfa29.js.map => TouchFormElement3.5aa0086b.js.map} (99%)
+ delete mode 100644 js/TouchFormElement31.177f63f7.js
+ delete mode 100644 js/TouchFormElement31.177f63f7.js.map
+ create mode 100644 js/TouchFormElement31.ac217671.js
+ create mode 100644 js/TouchFormElement31.ac217671.js.map
+ create mode 100644 js/TouchFormElement33.08fdd443.js
+ create mode 100644 js/TouchFormElement33.08fdd443.js.map
+ delete mode 100644 js/TouchFormElement33.0db28997.js
+ delete mode 100644 js/TouchFormElement33.0db28997.js.map
+ delete mode 100644 js/TouchFormElement34.141b116f.js
+ delete mode 100644 js/TouchFormElement34.141b116f.js.map
+ create mode 100644 js/TouchFormElement34.5acf4d2e.js
+ create mode 100644 js/TouchFormElement34.5acf4d2e.js.map
+ create mode 100644 js/TouchFormElement35.53cc4a24.js
+ create mode 100644 js/TouchFormElement35.53cc4a24.js.map
+ delete mode 100644 js/TouchFormElement35.9f2f154b.js
+ delete mode 100644 js/TouchFormElement35.9f2f154b.js.map
+ create mode 100644 js/TouchFormElement36.2caa5861.js
+ create mode 100644 js/TouchFormElement36.2caa5861.js.map
+ delete mode 100644 js/TouchFormElement36.31023436.js
+ delete mode 100644 js/TouchFormElement36.31023436.js.map
+ create mode 100644 js/TouchFormElement37.36cfba83.js
+ create mode 100644 js/TouchFormElement37.36cfba83.js.map
+ delete mode 100644 js/TouchFormElement37.c45274dd.js
+ delete mode 100644 js/TouchFormElement37.c45274dd.js.map
+ delete mode 100644 js/TouchFormElement39.14d0f370.js
+ delete mode 100644 js/TouchFormElement39.14d0f370.js.map
+ create mode 100644 js/TouchFormElement39.9717f919.js
+ create mode 100644 js/TouchFormElement39.9717f919.js.map
+ delete mode 100644 js/TouchFormElement43.41313e5d.js
+ delete mode 100644 js/TouchFormElement43.41313e5d.js.map
+ create mode 100644 js/TouchFormElement43.6bca68dd.js
+ create mode 100644 js/TouchFormElement43.6bca68dd.js.map
+ delete mode 100644 js/TouchFormElement44.78eba0dd.js
+ delete mode 100644 js/TouchFormElement44.78eba0dd.js.map
+ create mode 100644 js/TouchFormElement44.a9cfe00d.js
+ create mode 100644 js/TouchFormElement44.a9cfe00d.js.map
+ create mode 100644 js/TouchFormElement46.c5b97069.js
+ create mode 100644 js/TouchFormElement46.c5b97069.js.map
+ delete mode 100644 js/TouchFormElement46.c7961881.js
+ delete mode 100644 js/TouchFormElement46.c7961881.js.map
+ rename js/{TouchFormElement50.99935c3d.js => TouchFormElement50.6c7cc879.js} (98%)
+ rename js/{TouchFormElement50.99935c3d.js.map => TouchFormElement50.6c7cc879.js.map} (99%)
+ delete mode 100644 js/TouchFormElement51.0f460d73.js
+ delete mode 100644 js/TouchFormElement51.0f460d73.js.map
+ create mode 100644 js/TouchFormElement51.3e2bfd8f.js
+ create mode 100644 js/TouchFormElement51.3e2bfd8f.js.map
+ delete mode 100644 js/TouchFormElement52.7b4779f2.js
+ delete mode 100644 js/TouchFormElement52.7b4779f2.js.map
+ create mode 100644 js/TouchFormElement52.7d78e7bd.js
+ create mode 100644 js/TouchFormElement52.7d78e7bd.js.map
+ create mode 100644 js/TouchFormElement7.07ce1906.js
+ create mode 100644 js/TouchFormElement7.07ce1906.js.map
+ delete mode 100644 js/TouchFormElement7.4d285930.js
+ delete mode 100644 js/TouchFormElement7.4d285930.js.map
+ delete mode 100644 js/app.a3fa33dc.js
+ delete mode 100644 js/app.a3fa33dc.js.map
+ create mode 100644 js/app.b66697d2.js
+ create mode 100644 js/app.b66697d2.js.map
+ create mode 100644 js/chunk-009421dc.1205eb3e.js
+ create mode 100644 js/chunk-009421dc.1205eb3e.js.map
+ create mode 100644 js/chunk-021b8aa8.46dc5c4e.js
+ create mode 100644 js/chunk-021b8aa8.46dc5c4e.js.map
+ delete mode 100644 js/chunk-021b8aa8.80cad49c.js
+ delete mode 100644 js/chunk-021b8aa8.80cad49c.js.map
+ rename js/{chunk-04e668ba.bc72c7d9.js => chunk-04e668ba.b4b70bc0.js} (69%)
+ create mode 100644 js/chunk-04e668ba.b4b70bc0.js.map
+ delete mode 100644 js/chunk-04e668ba.bc72c7d9.js.map
+ delete mode 100644 js/chunk-0659713c.1b53141d.js
+ delete mode 100644 js/chunk-0659713c.1b53141d.js.map
+ create mode 100644 js/chunk-0659713c.4041ac94.js
+ create mode 100644 js/chunk-0659713c.4041ac94.js.map
+ delete mode 100644 js/chunk-0b046d66.8b35046a.js
+ delete mode 100644 js/chunk-0b046d66.8b35046a.js.map
+ delete mode 100644 js/chunk-0fb13f5f.3b7f4123.js
+ delete mode 100644 js/chunk-0fb13f5f.3b7f4123.js.map
+ create mode 100644 js/chunk-0fb13f5f.b6bc3ac6.js
+ create mode 100644 js/chunk-0fb13f5f.b6bc3ac6.js.map
+ delete mode 100644 js/chunk-12b976ee.309b9483.js
+ delete mode 100644 js/chunk-12b976ee.309b9483.js.map
+ create mode 100644 js/chunk-12b976ee.a4a0fe3a.js
+ create mode 100644 js/chunk-12b976ee.a4a0fe3a.js.map
+ delete mode 100644 js/chunk-13e9c9f8.0522f2a5.js
+ delete mode 100644 js/chunk-13e9c9f8.0522f2a5.js.map
+ create mode 100644 js/chunk-13e9c9f8.7aba03be.js
+ create mode 100644 js/chunk-13e9c9f8.7aba03be.js.map
+ delete mode 100644 js/chunk-16acfa06.04b7942b.js
+ delete mode 100644 js/chunk-16acfa06.04b7942b.js.map
+ create mode 100644 js/chunk-177a3565.07b0b7bd.js
+ create mode 100644 js/chunk-177a3565.07b0b7bd.js.map
+ delete mode 100644 js/chunk-177a3565.eb2deab5.js
+ delete mode 100644 js/chunk-177a3565.eb2deab5.js.map
+ rename js/{chunk-17d7986d.a5d3395e.js => chunk-17d7986d.00bd695e.js} (68%)
+ create mode 100644 js/chunk-17d7986d.00bd695e.js.map
+ delete mode 100644 js/chunk-17d7986d.a5d3395e.js.map
+ create mode 100644 js/chunk-195c8694.4b80c61e.js
+ create mode 100644 js/chunk-195c8694.4b80c61e.js.map
+ delete mode 100644 js/chunk-1b8878c3.50537032.js
+ delete mode 100644 js/chunk-1b8878c3.50537032.js.map
+ create mode 100644 js/chunk-1b8878c3.b04c0a94.js
+ create mode 100644 js/chunk-1b8878c3.b04c0a94.js.map
+ delete mode 100644 js/chunk-23cae350.3539dd88.js.map
+ rename js/{chunk-23cae350.3539dd88.js => chunk-23cae350.b4ffd0f0.js} (52%)
+ create mode 100644 js/chunk-23cae350.b4ffd0f0.js.map
+ rename js/{chunk-24c61e3e.f09b02e3.js => chunk-24c61e3e.860717b9.js} (58%)
+ create mode 100644 js/chunk-24c61e3e.860717b9.js.map
+ delete mode 100644 js/chunk-24c61e3e.f09b02e3.js.map
+ delete mode 100644 js/chunk-2726be10.18293927.js.map
+ rename js/{chunk-2726be10.18293927.js => chunk-2726be10.429c1fd6.js} (64%)
+ create mode 100644 js/chunk-2726be10.429c1fd6.js.map
+ create mode 100644 js/chunk-27705420.29c96ab8.js
+ create mode 100644 js/chunk-27705420.29c96ab8.js.map
+ rename js/{chunk-2a175e60.ea4a2778.js => chunk-2a175e60.8bb2cd76.js} (53%)
+ create mode 100644 js/chunk-2a175e60.8bb2cd76.js.map
+ delete mode 100644 js/chunk-2a175e60.ea4a2778.js.map
+ rename js/{chunk-2d0cbe29.e837e27f.js => chunk-2d0cbe29.d379d56d.js} (89%)
+ create mode 100644 js/chunk-2d0cbe29.d379d56d.js.map
+ delete mode 100644 js/chunk-2d0cbe29.e837e27f.js.map
+ create mode 100644 js/chunk-2d0e509e.1f309d93.js
+ create mode 100644 js/chunk-2d0e509e.1f309d93.js.map
+ rename js/{chunk-2d0e8fe4.8860e2d3.js => chunk-2d0e8fe4.3967e74e.js} (78%)
+ create mode 100644 js/chunk-2d0e8fe4.3967e74e.js.map
+ delete mode 100644 js/chunk-2d0e8fe4.8860e2d3.js.map
+ create mode 100644 js/chunk-2d207cfc.f89d37ed.js
+ create mode 100644 js/chunk-2d207cfc.f89d37ed.js.map
+ create mode 100644 js/chunk-2e6cd8aa.27e9f35c.js
+ create mode 100644 js/chunk-2e6cd8aa.27e9f35c.js.map
+ delete mode 100644 js/chunk-2e6cd8aa.7a525606.js
+ delete mode 100644 js/chunk-2e6cd8aa.7a525606.js.map
+ delete mode 100644 js/chunk-2f26d4aa.e9718725.js
+ delete mode 100644 js/chunk-2f26d4aa.e9718725.js.map
+ delete mode 100644 js/chunk-312cb050.8f7a0422.js
+ delete mode 100644 js/chunk-312cb050.8f7a0422.js.map
+ create mode 100644 js/chunk-312cb050.e05fff34.js
+ create mode 100644 js/chunk-312cb050.e05fff34.js.map
+ create mode 100644 js/chunk-32292aa4.85821bc0.js
+ create mode 100644 js/chunk-32292aa4.85821bc0.js.map
+ delete mode 100644 js/chunk-32292aa4.a313975b.js
+ delete mode 100644 js/chunk-32292aa4.a313975b.js.map
+ create mode 100644 js/chunk-3341b6b5.1ebf90ce.js
+ create mode 100644 js/chunk-3341b6b5.1ebf90ce.js.map
+ delete mode 100644 js/chunk-3341b6b5.3531c10c.js
+ delete mode 100644 js/chunk-3341b6b5.3531c10c.js.map
+ delete mode 100644 js/chunk-38b20952.53fc944a.js
+ delete mode 100644 js/chunk-38b20952.53fc944a.js.map
+ create mode 100644 js/chunk-38b20952.5911c31a.js
+ create mode 100644 js/chunk-38b20952.5911c31a.js.map
+ delete mode 100644 js/chunk-396f5648.78422fa8.js.map
+ rename js/{chunk-396f5648.78422fa8.js => chunk-396f5648.d33b7c68.js} (54%)
+ create mode 100644 js/chunk-396f5648.d33b7c68.js.map
+ create mode 100644 js/chunk-3a966710.495940b4.js
+ create mode 100644 js/chunk-3a966710.495940b4.js.map
+ delete mode 100644 js/chunk-3a966710.c6f8d627.js
+ delete mode 100644 js/chunk-3a966710.c6f8d627.js.map
+ rename js/{chunk-3ae5de22.8652b990.js => chunk-3ae5de22.4898e1ce.js} (99%)
+ rename js/{chunk-3ae5de22.8652b990.js.map => chunk-3ae5de22.4898e1ce.js.map} (99%)
+ delete mode 100644 js/chunk-3c642140.18ddf8bb.js
+ delete mode 100644 js/chunk-3c642140.18ddf8bb.js.map
+ create mode 100644 js/chunk-3c642140.aa8605a3.js
+ create mode 100644 js/chunk-3c642140.aa8605a3.js.map
+ rename js/{chunk-3ef4c8ba.39293d0c.js => chunk-3ef4c8ba.ccac84fe.js} (95%)
+ rename js/{chunk-3ef4c8ba.39293d0c.js.map => chunk-3ef4c8ba.ccac84fe.js.map} (99%)
+ rename js/{chunk-4183a6cc.986e597d.js => chunk-4183a6cc.acce1f0c.js} (99%)
+ rename js/{chunk-4183a6cc.986e597d.js.map => chunk-4183a6cc.acce1f0c.js.map} (99%)
+ create mode 100644 js/chunk-41a9dd0a.64be98e9.js
+ create mode 100644 js/chunk-41a9dd0a.64be98e9.js.map
+ delete mode 100644 js/chunk-41a9dd0a.fb2f2376.js
+ delete mode 100644 js/chunk-41a9dd0a.fb2f2376.js.map
+ create mode 100644 js/chunk-48a533fb.683f1643.js
+ create mode 100644 js/chunk-48a533fb.683f1643.js.map
+ delete mode 100644 js/chunk-48a533fb.89618e3b.js
+ delete mode 100644 js/chunk-48a533fb.89618e3b.js.map
+ delete mode 100644 js/chunk-4923dd30.d7c7b31f.js
+ delete mode 100644 js/chunk-4923dd30.d7c7b31f.js.map
+ create mode 100644 js/chunk-4923dd30.ed37740b.js
+ create mode 100644 js/chunk-4923dd30.ed37740b.js.map
+ delete mode 100644 js/chunk-49711748.038fab6f.js.map
+ rename js/{chunk-49711748.038fab6f.js => chunk-49711748.3166af70.js} (72%)
+ create mode 100644 js/chunk-49711748.3166af70.js.map
+ create mode 100644 js/chunk-4a070d21.7456c81f.js
+ create mode 100644 js/chunk-4a070d21.7456c81f.js.map
+ rename js/{chunk-4c7d4cdd.6a25ff04.js => chunk-4c7d4cdd.7d634b70.js} (98%)
+ rename js/{chunk-4c7d4cdd.6a25ff04.js.map => chunk-4c7d4cdd.7d634b70.js.map} (99%)
+ create mode 100644 js/chunk-4e1cd824.700bc8c3.js
+ create mode 100644 js/chunk-4e1cd824.700bc8c3.js.map
+ delete mode 100644 js/chunk-4e1cd824.b900c995.js
+ delete mode 100644 js/chunk-4e1cd824.b900c995.js.map
+ delete mode 100644 js/chunk-4fe3d07c.a8082e7c.js
+ delete mode 100644 js/chunk-4fe3d07c.a8082e7c.js.map
+ delete mode 100644 js/chunk-515474f6.8fe215ae.js
+ delete mode 100644 js/chunk-515474f6.8fe215ae.js.map
+ create mode 100644 js/chunk-515474f6.c9192330.js
+ create mode 100644 js/chunk-515474f6.c9192330.js.map
+ create mode 100644 js/chunk-61f9fc74.74a138b8.js
+ create mode 100644 js/chunk-61f9fc74.74a138b8.js.map
+ delete mode 100644 js/chunk-61f9fc74.f691b8fb.js
+ delete mode 100644 js/chunk-61f9fc74.f691b8fb.js.map
+ create mode 100644 js/chunk-625971b9.48ca17d9.js
+ create mode 100644 js/chunk-625971b9.48ca17d9.js.map
+ delete mode 100644 js/chunk-625971b9.961d9487.js
+ delete mode 100644 js/chunk-625971b9.961d9487.js.map
+ rename js/{chunk-5bfa378c.27832537.js => chunk-65090318.7513a75f.js} (99%)
+ rename js/{chunk-5bfa378c.27832537.js.map => chunk-65090318.7513a75f.js.map} (99%)
+ rename js/{chunk-67356a1a.bf8d33ed.js => chunk-67356a1a.bf24d326.js} (74%)
+ create mode 100644 js/chunk-67356a1a.bf24d326.js.map
+ delete mode 100644 js/chunk-67356a1a.bf8d33ed.js.map
+ rename js/{chunk-74d31e01.69cc8f75.js => chunk-74d31e01.2d9bb351.js} (68%)
+ create mode 100644 js/chunk-74d31e01.2d9bb351.js.map
+ delete mode 100644 js/chunk-74d31e01.69cc8f75.js.map
+ delete mode 100644 js/chunk-78d280a2.7a8e850d.js
+ delete mode 100644 js/chunk-78d280a2.7a8e850d.js.map
+ create mode 100644 js/chunk-7f145fe7.bf13cb93.js
+ create mode 100644 js/chunk-7f145fe7.bf13cb93.js.map
+ delete mode 100644 js/chunk-7f145fe7.f78daf4b.js
+ delete mode 100644 js/chunk-7f145fe7.f78daf4b.js.map
+ delete mode 100644 js/chunk-85e7b0c0.e10946f0.js
+ delete mode 100644 js/chunk-85e7b0c0.e10946f0.js.map
+ create mode 100644 js/chunk-8cf92160.4034c8f3.js
+ create mode 100644 js/chunk-8cf92160.4034c8f3.js.map
+ delete mode 100644 js/chunk-8f04b8cc.4f82b290.js.map
+ rename js/{chunk-8f04b8cc.4f82b290.js => chunk-8f04b8cc.6675905c.js} (79%)
+ create mode 100644 js/chunk-8f04b8cc.6675905c.js.map
+ delete mode 100644 js/chunk-8f988722.0ca233ad.js
+ delete mode 100644 js/chunk-8f988722.0ca233ad.js.map
+ create mode 100644 js/chunk-8f988722.ffe7f771.js
+ create mode 100644 js/chunk-8f988722.ffe7f771.js.map
+ rename js/{chunk-9872fe22.f791d162.js => chunk-9872fe22.6f62806e.js} (99%)
+ rename js/{chunk-9872fe22.f791d162.js.map => chunk-9872fe22.6f62806e.js.map} (99%)
+ create mode 100644 js/chunk-9baa1fa4.26be8120.js
+ create mode 100644 js/chunk-9baa1fa4.26be8120.js.map
+ delete mode 100644 js/chunk-9baa1fa4.985f8c9b.js
+ delete mode 100644 js/chunk-9baa1fa4.985f8c9b.js.map
+ create mode 100644 js/chunk-c78071a2.de8c345d.js
+ create mode 100644 js/chunk-c78071a2.de8c345d.js.map
+ delete mode 100644 js/chunk-c78071a2.e47150b2.js
+ delete mode 100644 js/chunk-c78071a2.e47150b2.js.map
+ create mode 100644 js/chunk-d56e6082.b0c301ea.js
+ create mode 100644 js/chunk-d56e6082.b0c301ea.js.map
+ create mode 100644 js/chunk-f4265cc6.8c292963.js
+ create mode 100644 js/chunk-f4265cc6.8c292963.js.map
+ delete mode 100644 js/chunk-f4265cc6.db2fe35c.js
+ delete mode 100644 js/chunk-f4265cc6.db2fe35c.js.map
+ rename js/{chunk-vendors.c37c7d70.js => chunk-vendors.83c3fa34.js} (97%)
+ rename js/{chunk-vendors.c37c7d70.js.map => chunk-vendors.83c3fa34.js.map} (52%)
+
+Git Checkout Command: cd /var/www/BHT-EMR-API && git checkout v4.17.2 -f
+ERRor:
+Previous HEAD position was fc29e71... fixes on obs with voided order
+HEAD is now at c5dc946... docs updated
+
+Git Checkout Output:
+
+Git Describe Command: cd /var/www/BHT-EMR-API && git describe > HEAD
+Git Describe write to head Output:
+
+Git Describe Command: cd /var/www/BHT-EMR-API && git describe
+Git Describe Output:
+v4.17.2
+
+ERRor:
+grep: /home/emruser/.rvm/gems/ruby-2.5.3/wrappers/bundle/*: Not a directory
+
+ERRor:
+grep: /home/emruser/.rvm/gems/ruby-2.5.3/gems/railties-5.1.6/lib/rails/generators/rails/app/templates/bin/bundle/*: Not a directory
+
+ERRor:
+grep: /home/emruser/.rvm/gems/ruby-2.5.3/gems/railties-5.1.7/lib/rails/generators/rails/app/templates/bin/bundle/*: Not a directory
+
+ERRor:
+grep: /home/emruser/.rvm/gems/ruby-2.4.0/wrappers/bundle/*: Not a directory
+
+ERRor:
+grep: /home/emruser/.rvm/gems/ruby-2.4.0/gems/railties-5.1.6/lib/rails/generators/rails/app/templates/bin/bundle/*: Not a directory
+
+Trying bundle path /home/emruser/.rvm/gems/ruby-2.5.3/wrappers/bundle...
+The dependency tzinfo-data (>= 0) will be unused by any of the platforms Bundler is installing for. Bundler is installing for ruby but the dependency is only for x86-mingw32, x86-mswin32, x64-mingw32, java. To add those platforms to the bundle, run `bundle lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java`.
+Using rake 13.0.6
+Using concurrent-ruby 1.2.2
+Using i18n 1.12.0
+Using minitest 5.15.0
+Using thread_safe 0.3.6
+Using tzinfo 1.2.11
+Using activesupport 5.2.8.1
+Using builder 3.2.4
+Using erubi 1.12.0
+Using racc 1.6.2
+Using nokogiri 1.12.5 (x86_64-linux)
+Using rails-dom-testing 2.0.3
+Using crass 1.0.6
+Using loofah 2.19.1
+Using rails-html-sanitizer 1.5.0
+Using actionview 5.2.8.1
+Using rack 2.2.6.4
+Using rack-test 2.1.0
+Using actionpack 5.2.8.1
+Using nio4r 2.5.8
+Using websocket-extensions 0.1.5
+Using websocket-driver 0.7.5
+Using actioncable 5.2.8.1
+Using globalid 1.1.0
+Using activejob 5.2.8.1
+Using mini_mime 1.1.2
+Using digest 3.1.1
+Using io-wait 0.3.0
+Using timeout 0.3.2
+Using net-protocol 0.1.2
+Using strscan 3.0.6
+Using net-imap 0.2.2
+Using net-pop 0.1.2
+Using net-smtp 0.3.0
+Using mail 2.8.1
+Using actionmailer 5.2.8.1
+Using activemodel 5.2.8.1
+Using arel 9.0.0
+Using activerecord 5.2.8.1
+Using marcel 1.0.2
+Using activestorage 5.2.8.1
+Using public_suffix 4.0.7
+Using addressable 2.8.2
+Using bindex 0.8.1
+Using msgpack 1.7.0
+Using bootsnap 1.13.0
+Using bundler 1.17.3
+Using byebug 11.1.3
+Using chronic 0.10.2
+Using composite_primary_keys 11.3.1
+Using httpclient 2.8.3
+Using mime-types-data 3.2023.0218.1
+Using mime-types 3.4.1
+Using multi_json 1.15.0
+Using couchrest 2.0.1
+Using diff-lcs 1.5.0
+Using unf_ext 0.0.8.2
+Using unf 0.1.4
+Using domain_name 0.5.20190701
+Using method_source 1.0.0
+Using thor 1.2.1
+Using railties 5.2.8.1
+Using sprockets 4.2.0
+Using sprockets-rails 3.4.2
+Using rails 5.2.8.1
+Using emr_ohsp_interface 1.2.0
+Using event_emitter 0.2.6
+Using factory_bot 6.2.1
+Using factory_bot_rails 6.2.0
+Using ffi 1.15.5
+Using parallel 1.20.1
+Using multi_xml 0.6.0
+Using httparty 0.21.0
+Using json 2.6.3
+Using websocket 1.2.9
+Using websocket-client-simple 0.3.1
+Using socket.io-client-simple 1.2.1
+Using his_emr_api_lab 1.1.28
+Using his_emr_api_radiology 0.0.8
+Using http-accept 1.7.0
+Using http-cookie 1.0.5
+Using json-schema 3.0.0
+Using rb-fsevent 0.11.2
+Using rb-inotify 0.10.1
+Using ruby_dep 1.5.0
+Using listen 3.1.5
+Using mysql2 0.5.5
+Using netrc 0.11.0
+Using passenger 6.0.17
+Using power_assert 2.0.3
+Using puma 4.3.12
+Using rack-cors 2.0.1
+Using rest-client 2.1.0
+Using rubyzip 2.3.2
+Using roo 2.8.3
+Using rspec-support 3.12.0
+Using rspec-core 3.12.1
+Using rspec-expectations 3.12.2
+Using rspec-mocks 3.12.5
+Using rspec 3.12.0
+Using rspec-rails 5.1.2
+Using rswag-api 2.8.0
+Using rswag-specs 2.8.0
+Using rswag-ui 2.8.0
+Using spring 2.1.1
+Using spring-watcher-listen 2.0.1
+Using test-unit 3.5.7
+Using web-console 3.7.0
+Using whenever 1.0.0
+Updating files in vendor/cache
+Removing outdated .gem files from vendor/cache
+  * mini_portile2-2.6.1.gem
+Bundle complete! 27 Gemfile dependencies, 109 gems now installed.
+Use `bundle info [gemname]` to see where a bundled gem is installed.
+Trying bundle path /home/emruser/.rvm/gems/ruby-2.5.3/gems/railties-5.1.6/lib/rails/generators/rails/app/templates/bin/bundle...
+ERRor:
+/home/emruser/.rvm/gems/ruby-2.5.3/gems/railties-5.1.6/lib/rails/generators/rails/app/templates/bin/bundle: line 1: syntax error near unexpected token `('
+/home/emruser/.rvm/gems/ruby-2.5.3/gems/railties-5.1.6/lib/rails/generators/rails/app/templates/bin/bundle: line 1: `ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile', __FILE__)'
+
+Trying bundle path /home/emruser/.rvm/gems/ruby-2.5.3/gems/railties-5.1.7/lib/rails/generators/rails/app/templates/bin/bundle...
+ERRor:
+/home/emruser/.rvm/gems/ruby-2.5.3/gems/railties-5.1.7/lib/rails/generators/rails/app/templates/bin/bundle: line 1: syntax error near unexpected token `('
+/home/emruser/.rvm/gems/ruby-2.5.3/gems/railties-5.1.7/lib/rails/generators/rails/app/templates/bin/bundle: line 1: `ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile', __FILE__)'
+
+Trying bundle path /home/emruser/.rvm/gems/ruby-2.4.0/wrappers/bundle...
+ERRor:
+Your Ruby version is 2.4.0, but your Gemfile specified >= 2.5.3, < 3.0.0
+
+Trying bundle path /home/emruser/.rvm/gems/ruby-2.4.0/gems/railties-5.1.6/lib/rails/generators/rails/app/templates/bin/bundle...
+ERRor:
+/home/emruser/.rvm/gems/ruby-2.4.0/gems/railties-5.1.6/lib/rails/generators/rails/app/templates/bin/bundle: line 1: syntax error near unexpected token `('
+/home/emruser/.rvm/gems/ruby-2.4.0/gems/railties-5.1.6/lib/rails/generators/rails/app/templates/bin/bundle: line 1: `ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile', __FILE__)'
+
+Trying ruby path /home/emruser/.rvm/gems/ruby-2.5.3/wrappers/ruby...
+ERRor:
+/home/emruser/.rvm/gems/ruby-2.5.3/gems/digest-3.1.1/lib/digest.rb:20: warning: already initialized constant Digest::REQUIRE_MUTEX
+/usr/share/rvm/rubies/ruby-2.5.3/lib/ruby/2.5.0/digest.rb:6: warning: previous definition of REQUIRE_MUTEX was here
+
+Trying ruby path /home/emruser/.rvm/gems/ruby-2.5.3/gems/passenger-6.0.14/buildout/ruby...
+ERRor:
+bash: /home/emruser/.rvm/gems/ruby-2.5.3/gems/passenger-6.0.14/buildout/ruby: Is a directory
+
+Trying ruby path /home/emruser/.rvm/gems/ruby-2.5.3/gems/passenger-6.0.8/buildout/ruby...
+ERRor:
+bash: /home/emruser/.rvm/gems/ruby-2.5.3/gems/passenger-6.0.8/buildout/ruby: Is a directory
+
+Trying ruby path /home/emruser/.rvm/gems/ruby-2.4.0/wrappers/ruby...
+ERRor:
+/usr/share/rvm/rubies/ruby-2.4.0/lib/ruby/gems/2.4.0/gems/bundler-2.2.26/lib/bundler.rb:38: warning: already initialized constant Bundler::ORIGINAL_ENV
+/home/emruser/.rvm/gems/ruby-2.4.0@global/gems/bundler-2.2.26/lib/bundler.rb:38: warning: previous definition of ORIGINAL_ENV was here
+/usr/share/rvm/rubies/ruby-2.4.0/lib/ruby/gems/2.4.0/gems/bundler-2.2.26/lib/bundler.rb:40: warning: already initialized constant Bundler::SUDO_MUTEX
+/home/emruser/.rvm/gems/ruby-2.4.0@global/gems/bundler-2.2.26/lib/bundler.rb:40: warning: previous definition of SUDO_MUTEX was here
+/usr/share/rvm/rubies/ruby-2.4.0/lib/ruby/gems/2.4.0/gems/bundler-2.2.26/lib/bundler/definition.rb:435:in `validate_ruby!': Your Ruby version is 2.4.0, but your Gemfile specified >= 2.5.3, < 3.0.0 (Bundler::RubyVersionMismatch)
+	from /usr/share/rvm/rubies/ruby-2.4.0/lib/ruby/gems/2.4.0/gems/bundler-2.2.26/lib/bundler/definition.rb:410:in `validate_runtime!'
+	from /usr/share/rvm/rubies/ruby-2.4.0/lib/ruby/gems/2.4.0/gems/bundler-2.2.26/lib/bundler.rb:143:in `setup'
+	from /home/emruser/.rvm/gems/ruby-2.4.0@global/gems/bundler-2.2.26/lib/bundler/setup.rb:20:in `block in <top (required)>'
+	from /usr/share/rvm/rubies/ruby-2.4.0/lib/ruby/gems/2.4.0/gems/bundler-2.2.26/lib/bundler/ui/shell.rb:136:in `with_level'
+	from /usr/share/rvm/rubies/ruby-2.4.0/lib/ruby/gems/2.4.0/gems/bundler-2.2.26/lib/bundler/ui/shell.rb:88:in `silence'
+	from /home/emruser/.rvm/gems/ruby-2.4.0@global/gems/bundler-2.2.26/lib/bundler/setup.rb:20:in `<top (required)>'
+	from /usr/share/rvm/rubies/ruby-2.4.0/lib/ruby/2.4.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+	from /usr/share/rvm/rubies/ruby-2.4.0/lib/ruby/2.4.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+	from /var/www/BHT-EMR-API/config/boot.rb:3:in `<top (required)>'
+	from bin/rails:8:in `require_relative'
+	from bin/rails:8:in `<main>'
+
+Git Checkout Command: cd /var/www/HIS-Core && git checkout v1.8.1 -f
+ERRor:
+Previous HEAD position was f9807a4... v1.8.3
+HEAD is now at 69b4e12... v1.8.1
+
+Git Checkout Output:
+
+Git Describe Command: cd /var/www/HIS-Core && git describe > HEAD
+Git Describe write to head Output:
+
+Git Describe Command: cd /var/www/HIS-Core && git describe
+Git Describe Output:
+v1.8.1
+
+ERRor:
+[sudo] password for emruser: 
+Nginx Reload Output:
+
+ERRor:
+[sudo] password for emruser: 
+Nginx Status Output:
+● nginx.service - A high performance web server and a reverse proxy server
+   Loaded: loaded (/lib/systemd/system/nginx.service; enabled; vendor preset: enabled)
+   Active: active (running) since Wed 2023-05-24 20:22:34 CAT; 2 days ago
+  Process: 3811 ExecReload=/opt/nginx/sbin/nginx -g daemon on; master_process on; -s reload (code=exited, status=0/SUCCESS)
+  Process: 1338 ExecStart=/opt/nginx/sbin/nginx -g daemon on; master_process on; (code=exited, status=0/SUCCESS)
+  Process: 1165 ExecStartPre=/opt/nginx/sbin/nginx -t -q -g daemon on; master_process on; (code=exited, status=0/SUCCESS)
+ Main PID: 1854 (nginx)
+    Tasks: 43
+   Memory: 36.5M
+      CPU: 25.193s
+   CGroup: /system.slice/nginx.service
+           ├─ 1854 nginx: master process /opt/nginx/sbin/nginx -g daemon on; master_process on
+           ├─ 3818 PassengerWatchdog (cleaning up...)                                      
+           ├─ 3825 Passenger watchdog                                                      
+           ├─ 3839 Passenger core                                                      
+           ├─ 3891 nginx: worker process                                 
+           ├─ 3896 nginx: worker process                                 
+           ├─ 3899 nginx: worker process                                 
+           ├─ 3904 nginx: worker process                                 
+           ├─ 3910 nginx: worker process                                 
+           ├─ 3912 nginx: worker process                                 
+           ├─ 3918 nginx: worker process                                 
+           ├─ 3919 nginx: worker process                                 
+           └─28653 Passenger core                                                      
+
+May 26 22:22:57 emr systemd[1]: Reloading A high performance web server and a reverse proxy server.
+May 26 22:22:57 emr systemd[1]: Reloaded A high performance web server and a reverse proxy server.
+May 26 22:24:30 emr systemd[1]: Reloading A high performance web server and a reverse proxy server.
+May 26 22:24:30 emr systemd[1]: Reloaded A high performance web server and a reverse proxy server.
+May 26 23:10:29 emr systemd[1]: Reloading A high performance web server and a reverse proxy server.
+May 26 23:10:29 emr systemd[1]: Reloaded A high performance web server and a reverse proxy server.
+May 26 23:12:23 emr systemd[1]: Reloading A high performance web server and a reverse proxy server.
+May 26 23:12:23 emr systemd[1]: Reloaded A high performance web server and a reverse proxy server.
+May 26 23:13:52 emr systemd[1]: Reloading A high performance web server and a reverse proxy server.
+May 26 23:13:52 emr systemd[1]: Reloaded A high performance web server and a reverse proxy server.
+
+ERRor:
+[sudo] password for emruser: 
+Puma Stop Output:
+
+ERRor:
+[sudo] password for emruser: 
+Puma Start Output:
+
+ERRor:
+[sudo] password for emruser: 
+Puma Status Output:
+● puma.service - Puma HTTP Server
+   Loaded: loaded (/etc/systemd/system/puma.service; enabled; vendor preset: enabled)
+   Active: active (running) since Fri 2023-05-26 23:13:54 CAT; 290ms ago
+ Main PID: 4098 (bash)
+    Tasks: 124
+   Memory: 435.3M
+      CPU: 620ms
+   CGroup: /system.slice/puma.service
+           ├─2226 puma 4.3.12 (tcp://0.0.0.0:3001) [BHT-EMR-API]                                                                                                                    
+           ├─2265 puma: cluster worker 0: 2226 [BHT-EMR-API]                                                                                                                        
+           ├─2269 puma: cluster worker 1: 2226 [BHT-EMR-API]                                                                                                                        
+           ├─2280 puma: cluster worker 2: 2226 [BHT-EMR-API]                                                                                                                        
+           ├─2295 puma: cluster worker 3: 2226 [BHT-EMR-API]                                                                                                                        
+           ├─2311 puma: cluster worker 4: 2226 [BHT-EMR-API]                                                                                                                        
+           ├─2324 puma: cluster worker 5: 2226 [BHT-EMR-API]                                                                                                                        
+           ├─2334 puma: cluster worker 6: 2226 [BHT-EMR-API]                                                                                                                        
+           ├─2349 puma: cluster worker 7: 2226 [BHT-EMR-API]                                                                                                                        
+           ├─4088 puma 4.3.12 (tcp://0.0.0.0:3001) [BHT-EMR-API]                                                                                                                    
+           ├─4098 /bin/bash -lc rvm use 2.5.3 && /home/emruser/.rvm/gems/ruby-2.5.3/bin/puma -C /var/www/BHT-EMR-API/config/server/development.rb
+           └─4230 /bin/bash -lc rvm use 2.5.3 && /home/emruser/.rvm/gems/ruby-2.5.3/bin/puma -C /var/www/BHT-EMR-API/config/server/development.rb
+
+May 26 23:13:54 emr systemd[1]: Started Puma HTTP Server.
+May 26 23:13:54 emr bash[4098]: Unknown ruby interpreter version (do not know how to handle): >=2.5.3,<3.0.0.
+
+['v4.17.2', 'v1.8.1']
+Data sent successfully {'result': 'success', 'message': 'successfully sent email alert to respondent(s)'}
+Runtime:  31.239379167556763  seconds
