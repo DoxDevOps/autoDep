@@ -41,11 +41,21 @@
     <div class="container">
         <div class="top-banner">
             <h1>AudoDep</h1>
-            <a href="/" class="logout">Logout</a>
+            <a href="/logout" class="logout">Logout</a>
         </div>
         <div class="dashboard">
             <h2>Dashboard Content</h2>
-            <!-- Add your dashboard content here -->
+            <form method="POST">
+                {% if process_running %}
+                    <button type="submit" name="stop">Stop</button>
+                    <p>Process is running...</p>
+                {% else %}
+                    {% if process_started %}
+                        <p>Process has stopped.</p>
+                    {% endif %}
+                    <button type="submit" name="start">Start</button>
+                {% endif %}
+            </form>
         </div>
     </div>
 </body>
