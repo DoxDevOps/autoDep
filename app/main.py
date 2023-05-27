@@ -92,6 +92,9 @@ def landing():
             elif 'stop' in request.form:
                 session['process_running'] = False
                 stop_process()
+            elif 'clear' in request.form:
+                clear_output_table()
+                
 
         return render_template('landing.html', process_running=session.get('process_running', False))
     else:
@@ -133,6 +136,12 @@ def stop_process():
         process.join()
         process = None
 
+def clear_output_table():
+        db = get_db()
+        cursor = db.cursor()
+        cursor.execute("DELETE FROM output_table")
+        db.commit()
+
 
 def send_output_changes(content):
     # Iterate over connected clients and send the content to each client
@@ -171,47 +180,9 @@ def output_stream():
 
 
 
-def get_file_changes():
-    try:
-        with open(get_output_path(), 'r') as file:
-            lines = file.readlines()
-
-            print(len(lines))
-
-        # Check if the file has been modified
-        if len(lines) == 0:
-            return "No changes made to the file."
-
-        changes = []
-        for line in lines[-1:]:
-            line = line.strip()
-            if line:
-                changes.append(line)
-
-        if len(changes) == 0:
-            return "No changes made to the file."
-
-        return changes
-
-    except FileNotFoundError:
-        return "File not found."
-
-def stream_file_changes():
-    while True:
-        changes = get_file_changes()
-
-        if isinstance(changes, str):
-            yield f"data: {changes}\n\n"
-        else:
-            for change in changes:
-                yield f"data: {change}\n\n"
-
-        # Sleep for a specified interval (e.g., 1 second)
-        time.sleep(1)
-
 @app.route('/output_current_stream')
 def output_current_stream():
-    return Response(stream_file_changes(), mimetype='text/event-stream')
+    
 
 
 if __name__ == '__main__':
