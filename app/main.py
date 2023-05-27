@@ -1,10 +1,12 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, g
 from multiprocessing import Process, Value
 import time
 import os
+import sys
 from flask import Response
 from flask_sse import sse
 from autodeploy import call_process
+import sqlite3
 
 # Global variables
 process = None
@@ -12,6 +14,56 @@ clients = []
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
+
+def get_db():
+    db = getattr(g, '_database', None)
+    if db is None:
+        app_ctx = app.app_context()
+        app_ctx.push()
+        db = g._database = sqlite3.connect('database.sqlite')
+    return db
+
+@app.teardown_appcontext
+def close_db(exception):
+    db = getattr(g, '_database', None)
+    if db is not None:
+        db.close()
+
+# Perform authentication here using SQLite database
+# Connect to the database
+
+
+def redirect_output_to_db():
+    db = get_db()
+    # cursor = db.cursor()
+    sys.stdout = DBOuput(db)
+
+def restore_output():
+    sys.stdout.close()
+    sys.stdout = sys.__stdout__
+    
+
+class DBOuput:
+    def __init__(self, db):
+        self.db = db
+        self.create_table()
+
+    def create_table(self):
+        # Create the output_table if it doesn't exist
+        query = "CREATE TABLE IF NOT EXISTS output_table (message TEXT)"
+        self.db.execute(query)
+        self.db.commit()
+
+    def write(self, message):
+        # Write the message to the database
+        query = "INSERT INTO output_table (message) VALUES (?)"
+        self.db.execute(query, (message,))
+        self.db.commit()
+
+    def flush(self):
+        # Flush the output (if needed)
+        pass
+
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -57,6 +109,9 @@ def get_output_path():
     return output_path
 
 def start_process():
+    # db = get_db()
+    # cursor = db.cursor()
+    redirect_output_to_db()
     session['process_started'] = True
     
     global process
@@ -65,6 +120,7 @@ def start_process():
         process = Process(target=call_process)
         process.start()
         session['process_running'] = True
+    
 
 def stop_process():
     session['process_started'] = False
@@ -94,16 +150,25 @@ def read_output_changes():
 @app.route('/output_stream')
 def output_stream():
     def stream():
-        with open(get_output_path(), 'r') as file:
-            while True:
-                line = file.readline()
-                if not line:
-                    break
-                yield 'data: {}\n\n'.format(line.strip())
+        with app.app_context():  # Set up the application context
+            db = get_db()
+            cursor = db.cursor()
 
-    # Return the SSE response
-    
+            cursor.execute("SELECT message FROM output_table")
+            messages = cursor.fetchall()
+
+            for message in messages:
+                yield f"data: {message[0]}\n\n"
+
+            # Close the cursor and database connection
+            cursor.close()
+            db.close()
+
+            # Send the end_stream event
+            yield "event: end_stream\ndata: End of stream\n\n"
+
     return Response(stream(), mimetype='text/event-stream')
+
 
 
 def get_file_changes():
@@ -150,4 +215,5 @@ def output_current_stream():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True)
+    with app.app_context():
+      app.run(host='0.0.0.0', debug=True)

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Landing Page</title>
+    <title>autoDep</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     <style>
         .container {
@@ -52,89 +52,181 @@
         .terminal-window pre {
             margin: 0;
         }
+
+        .clear-button {
+            margin-top: 10px;
+        }
+
+        /* Style for the start button */
+        button[name="start"] {
+            background-color: #0984e3;
+            color: #ffffff;
+            border: none;
+            padding: 8px 16px;
+            font-size: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* Style for the stop button */
+        button[name="stop"] {
+            background-color: #ff4d4f;
+            color: #ffffff;
+            border: none;
+            padding: 8px 16px;
+            font-size: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* Style for the clear terminal button */
+        button[name="clear"] {
+            background-color: #00b894;
+            color: #ffffff;
+            border: none;
+            padding: 8px 16px;
+            font-size: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .terminal-window {
+            background-color: #000000;
+            color: #00ff00;
+            padding: 10px;
+            height: 540px;
+            overflow-y: scroll;
+            border-bottom-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+            position: relative;
+        }
+        
+        .banner {
+            background-color: #1e1e1e;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        
+        #output-label {
+            color: #ffffff;
+        }
+        
+        .copy-button {
+            background-color: #E63946;
+            color: #ffffff;
+            border: none;
+            padding: 5px 10px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        
+        .copy-button:hover {
+            background-color: #FF4757;
+        }
+
+   
+        
+        
+        
     </style>
 </head>
 <body>
     <div class="container">
         <div class="top-banner">
-            <h1>AudoDep</h1>
+            <h1>AutoDep</h1>
             <a href="/logout" class="logout">Logout</a>
         </div>
         <div class="dashboard">
-            <h2>Dashboard Content</h2>
             <form method="POST">
                 {% if process_running %}
-                    <button type="submit" name="stop">Stop</button>
+                    <div>
+                        <button type="submit" name="stop">Stop</button>
+                        <button type="submit" name="clear">Clear Terminal</button> <!-- New clear button -->
+                    </div>
                     <p>Process is running...</p>
+                    <div class="banner">
+                        <span id="output-label">Output</span>
+                        <button class="copy-button" onclick="copyToClipboard()">Copy to Clipboard</button>
+                    </div>
                     <div class="terminal-window">
                         <pre id="output"></pre>
                     </div>
+                                       
                 {% else %}
                     {% if process_started %}
                         <p>Process has stopped.</p>
                     {% endif %}
-                    <button type="submit" name="start">Start</button>
+                    <div>
+                        <button type="submit" name="start">Start</button>
+                        <button type="submit" name="clear">Clear Terminal</button> <!-- New clear button -->
+                    </div>
                 {% endif %}
             </form>
         </div>
+        
     </div>
     
     <script>
-        var stream = new EventSource("/output_stream");
-        var startingCount = 0;
-        
-        stream.addEventListener("message", function(event) {
-          var outputContent = event.data;
-          
-        
-          // Check if the received message is "Starting"
-          if (outputContent === "Starting") {
-            startingCount++;
-        
-            // Close the event source connection when "Starting" is received for the second time
-            if (startingCount === 2) {
-              stream.close();
-              var new_stream = new EventSource("/output_current_stream");
-              var previousContent2 = ""; // Variable to store the previous outputContent2
-              
-              new_stream.addEventListener("message", function(event2) {
-                var outputContent2 = event2.data;
-                console.log(outputContent2);
-                
-                if (outputContent2 !== previousContent2) {
-                  previousContent2 = outputContent2; // Update the previousContent2
-                  
-                  var formattedContent2 = escapeHtml(outputContent2);
-                  document.getElementById("output").innerHTML += "<pre>" + formattedContent2 + "</pre>";
-                  var terminalWindow2 = document.querySelector(".terminal-window");
-                  terminalWindow2.scrollTop = terminalWindow2.scrollHeight;
-                }
-              });
-                 
-            }
-          }
-
-          if (startingCount < 2) {
-            var formattedContent = escapeHtml(outputContent);
-            document.getElementById("output").innerHTML += "<pre>" + formattedContent + "</pre>"
-            var terminalWindow = document.querySelector(".terminal-window");
-            terminalWindow.scrollTop = terminalWindow.scrollHeight
-          }
-
-        })
-        
-        function escapeHtml(unsafe) {
-          return unsafe
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#039;");
-        }
-        
-                 
-    </script>
+        // Create a new EventSource for the output stream
+        var eventSource = new EventSource('/output_stream');
     
+        // Get the HTML element to display the output
+        var outputElement = document.getElementById('output');
+    
+        // Function to escape HTML entities
+        function escapeHtml(unsafe) {
+            return unsafe
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+    
+        // Event listener for receiving messages
+        eventSource.onmessage = function (event) {
+            // Escape the message to prevent HTML injection
+            var escapedMessage = escapeHtml(event.data);
+    
+            // Append the escaped message to the output element
+            outputElement.innerHTML += escapedMessage + "<br>";
+        };
+    
+        // Event listener for the end of the stream
+        eventSource.addEventListener('end_stream', function (event) {
+            // Close the EventSource connection
+            eventSource.close();
+        });
+    
+        // Function to copy the terminal output to clipboard
+        function copyToClipboard() {
+            // Create a textarea element
+            var textarea = document.createElement('textarea');
+    
+            // Set the value of the textarea to the terminal output
+            textarea.value = outputElement.innerText;
+    
+            // Append the textarea to the document
+            document.body.appendChild(textarea);
+    
+            // Select the contents of the textarea
+            textarea.select();
+    
+            // Copy the selected text to clipboard
+            document.execCommand('copy');
+    
+            // Remove the textarea from the document
+            document.body.removeChild(textarea);
+    
+            // Alert the user that the text has been copied
+            alert('Terminal output copied to clipboard!');
+        }
+    </script>    
     
 </body>
 </html>
