@@ -182,7 +182,28 @@ def output_stream():
 
 @app.route('/output_current_stream')
 def output_current_stream():
-    
+    def stream():
+        with app.app_context():  # Set up the application context
+            db = get_db()
+            cursor = db.cursor()
+
+            cursor.execute("SELECT message FROM output_table ORDER BY ROWID DESC LIMIT 2")
+            messages = cursor.fetchall()
+
+            for message in messages:
+                yield f"{message[0]}"
+            # if message:
+            #     yield f"data: {message[0]}\n\n"
+            # else:
+            #     yield "data: No output available\n\n"
+
+            # Close the cursor and database connection
+            cursor.close()
+            db.close()
+
+    return Response(stream(), mimetype='text/event-stream')
+
+
 
 
 if __name__ == '__main__':

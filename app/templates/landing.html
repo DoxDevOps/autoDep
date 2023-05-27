@@ -189,8 +189,11 @@
             // Escape the message to prevent HTML injection
             var escapedMessage = escapeHtml(event.data);
     
-            // Append the escaped message to the output element
-            outputElement.innerHTML += escapedMessage + "<br>";
+            // Check if the message already exists in the terminal window
+            if (!outputElement.innerHTML.includes(escapedMessage)) {
+                // Append the escaped message to the output element
+                outputElement.innerHTML += escapedMessage + "<br>";
+            }
         };
     
         // Event listener for the end of the stream
@@ -198,6 +201,56 @@
             // Close the EventSource connection
             eventSource.close();
         });
+    
+        // Function to periodically call the /output_current_stream endpoint
+        function updateTerminal() {
+            fetch('/output_current_stream')
+                .then(response => response.text())
+                .then(data => {
+                    
+                    // Escape the data to prevent HTML injection
+                    var escapedData = escapeHtml(data);
+                    //console.log(escapedData);
+                   
+                    
+                    console.log(outputElement.textContent)
+                    var lines = outputElement.textContent.split('\n');
+                    var lastLine = lines[lines.length - 1].trim();
+
+                    console.log(lastLine);
+
+
+                    
+    
+                    // Check if the data is not equal to the current terminal output
+                    if (escapedData !== last_line) {
+                        // Append the escaped data to the output element
+                        outputElement.innerHTML += escapedData;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        function cleanOutput(output) {
+            // Split the output into lines
+            var lines = output.split('\n');
+            
+            // Filter out lines that start with "data:" or are empty
+            var cleanedLines = lines.filter(function(line) {
+              return line.trim() !== '' && !line.startsWith('data:');
+            });
+            
+            // Join the cleaned lines back into a single string
+            var cleanedOutput = cleanedLines.join('\n');
+            
+            return cleanedOutput;
+          }
+          
+    
+        // Update the terminal every second
+        setInterval(updateTerminal, 1000);
     
         // Function to copy the terminal output to clipboard
         function copyToClipboard() {
@@ -222,7 +275,7 @@
             // Alert the user that the text has been copied
             alert('Terminal output copied to clipboard!');
         }
-    </script>    
+    </script>        
     
 </body>
 </html>
