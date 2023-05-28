@@ -256,6 +256,7 @@
                     <div>
                         <button type="submit" name="stop">Stop</button>
                         <button type="submit" name="clear">Clear Terminal</button>
+                        <button class="refresh-button" onclick="refreshPage()">Refresh</button>
                     </div>
                     <p></p>
                     <div class="banner">
@@ -302,6 +303,10 @@
     
     
     <script>
+        function refreshPage() {
+            location.reload();
+        }
+        
         // Function to scroll the terminal window to the bottom
         function scrollToBottom() {
             outputElement.scrollTop = outputElement.scrollHeight;
