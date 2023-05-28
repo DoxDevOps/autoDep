@@ -96,7 +96,7 @@ def landing():
                 clear_output_table()
                 
 
-        return render_template('landing.html', process_running=session.get('process_running', False))
+        return render_template('landing.html', process_running=session.get('process_running', True))
     else:
         return redirect(url_for('login'))
 
@@ -126,15 +126,16 @@ def start_process():
     
 
 def stop_process():
-    session['process_started'] = False
+    # session['process_started'] = False
+    session['process_started'] = True
     # Your code to stop the process
 
     # Terminate the process that monitors output changes
-    global process
-    if process:
-        process.terminate()
-        process.join()
-        process = None
+    # global process
+    # if process:
+    #     process.terminate()
+    #     process.join()
+    #     process = None
 
 def clear_output_table():
         db = get_db()
