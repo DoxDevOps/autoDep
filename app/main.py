@@ -238,7 +238,7 @@ def output_current_file_stream():
         lines = tail(file_path, num_lines=1)  # Retrieve the last line of the file
 
         for line in lines:
-            yield f"data: {line.strip()}\n\n"
+            yield f"{line.strip()}\n\n"
 
     return Response(stream(), mimetype='text/event-stream')
 

@@ -43,14 +43,11 @@ def init():
 def call_process():
     file_operations.redirect_output_to_file('app/output.txt')
     start_time = time.time()
-    
     init()
     end_time = time.time()
     runtime = end_time - start_time
     print("Runtime:", runtime, "seconds")
     file_operations.restore_output()
-    
-
 
 if __name__ == '__main__':
     start_time = time.time()
