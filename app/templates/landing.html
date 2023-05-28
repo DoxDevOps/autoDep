@@ -308,7 +308,7 @@
         }
 
         // Create a new EventSource for the output stream
-        var eventSource = new EventSource('/output_stream');
+        var eventSource = new EventSource('/file_stream');
     
         // Get the HTML element to display the output
         var outputElement = document.getElementById('output');
@@ -344,7 +344,7 @@
     
         // Function to periodically call the /output_current_stream endpoint
         function updateTerminal() {
-            fetch('/output_current_stream')
+            fetch('/output_current_file_stream')
                 .then(response => response.text())
                 .then(data => {
                     var index = outputElement.innerText.indexOf(data)

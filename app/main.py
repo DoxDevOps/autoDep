@@ -7,6 +7,7 @@ from flask import Response
 from flask_sse import sse
 from autodeploy import call_process
 import sqlite3
+from collections import deque
 
 # Global variables
 process = None
@@ -93,7 +94,8 @@ def landing():
                 session['process_running'] = False
                 stop_process()
             elif 'clear' in request.form:
-                clear_output_table()
+                clear_output_file()
+                # clear_output_table()
                 
 
         return render_template('landing.html', process_running=session.get('process_running', True))
@@ -105,16 +107,11 @@ def logout():
     session.pop('logged_in', None)
     return redirect(url_for('login'))
 
-def get_output_path():
-    # Get the directory path of the code file
-    dir_path = os.path.dirname(os.path.abspath(__file__))
-    output_path = os.path.join(dir_path, 'output.txt')
-    return output_path
 
 def start_process():
     # db = get_db()
     # cursor = db.cursor()
-    redirect_output_to_db()
+    # redirect_output_to_db()
     session['process_started'] = True
     
     global process
@@ -143,6 +140,16 @@ def clear_output_table():
         cursor.execute("DELETE FROM output_table")
         db.commit()
 
+def get_output_file_path():
+    # Get the directory path of the code file
+    dir_path = os.path.dirname(os.path.abspath(__file__))
+    output_path = os.path.join(dir_path, 'output.txt')
+    return output_path
+
+def clear_output_file():
+    with open(get_output_file_path(), 'w') as file:
+        pass
+
 
 def send_output_changes(content):
     # Iterate over connected clients and send the content to each client
@@ -150,7 +157,7 @@ def send_output_changes(content):
         client.put(content)
 
 def read_output_changes():
-    output_path = get_output_path()
+    output_path = get_output_file_path()
     
     with open(output_path, 'r') as file:
         text = file.read()
@@ -179,7 +186,21 @@ def output_stream():
 
     return Response(stream(), mimetype='text/event-stream')
 
+@app.route('/file_stream')
+def file_stream():
+    def stream():
+        with app.app_context():  # Set up the application context
+            file_path = get_output_file_path()  # Replace with the actual file path
+            
+            with open(file_path, 'r') as file:
+                for line in file:
+                    yield f"data: {line.strip()}\n\n"
+            
+            # Send the end_stream event
+            yield "event: end_stream\ndata: End of stream\n\n"
 
+
+    return Response(stream(), mimetype='text/event-stream')
 
 @app.route('/output_current_stream')
 def output_current_stream():
@@ -204,7 +225,22 @@ def output_current_stream():
 
     return Response(stream(), mimetype='text/event-stream')
 
+@app.route('/output_current_file_stream')
+def output_current_file_stream():
+    def tail(file_path, num_lines):
+        # Open the file in read mode and use a deque to efficiently retrieve the last 'num_lines' lines
+        with open(file_path, 'r') as file:
+            lines = deque(file, num_lines)
+        return lines
 
+    def stream():
+        file_path = get_output_file_path() # Replace with the actual file path
+        lines = tail(file_path, num_lines=1)  # Retrieve the last line of the file
+
+        for line in lines:
+            yield f"data: {line.strip()}\n\n"
+
+    return Response(stream(), mimetype='text/event-stream')
 
 
 if __name__ == '__main__':

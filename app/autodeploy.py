@@ -4,7 +4,7 @@ import time
 from time import sleep
 from dotenv import load_dotenv
 load_dotenv()
-from utils import imp_exp_func
+from utils import imp_exp_func, file_operations
 from transpoter import update_host
 
 
@@ -41,12 +41,14 @@ def init():
     return True
 
 def call_process():
+    file_operations.redirect_output_to_file('app/output.txt')
     start_time = time.time()
     
     init()
     end_time = time.time()
     runtime = end_time - start_time
     print("Runtime:", runtime, "seconds")
+    file_operations.restore_output()
     
 
 
