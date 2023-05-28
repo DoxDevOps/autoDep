@@ -197,7 +197,7 @@ def file_stream():
                     yield f"data: {line.strip()}\n\n"
             
             # Send the end_stream event
-            # yield "event: end_stream\ndata: End of stream\n\n"
+            yield "event: end_stream\ndata: End of stream\n\n"
 
 
     return Response(stream(), mimetype='text/event-stream')
