@@ -221,6 +221,15 @@
                 padding: 0px;
                 margin-top: 0px;
                 margin-bottom: 0px;
+                flex-direction: row;
+        }
+
+        .footer .container .contact-details {
+            margin: auto;
+        }
+
+        .footer .container .company-info {
+            margin: auto
         }
         
         .footer h3 {
@@ -281,8 +290,14 @@
                 <p>123 Main Street</p>
                 <p>City, State, ZIP</p>
             </div>
+            <div class="company-info">
+                <img src="{{ url_for('static', filename='favicon.png') }}" alt="Logo" width="" height="100">
+            </div>
         </div>
+
+
     </div>
+    
     
     
     <script>
