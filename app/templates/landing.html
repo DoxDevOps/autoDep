@@ -209,24 +209,23 @@
                 .then(data => {
                     
                     // Escape the data to prevent HTML injection
-                    var escapedData = escapeHtml(data);
-                    //console.log(escapedData);
-                   
-                    
-                    console.log(outputElement.textContent)
-                    var lines = outputElement.textContent.split('\n');
-                    var lastLine = lines[lines.length - 1].trim();
+                    var escapedData = escapeHtml(data).trim()
+                    var searchTerm = escapedData
+                    var index = outputElement.innerText.indexOf(searchTerm)
 
-                    console.log(lastLine);
-
-
-                    
-    
-                    // Check if the data is not equal to the current terminal output
-                    if (escapedData !== last_line) {
-                        // Append the escaped data to the output element
+                    if (index !== -1) {
+                        //console.log(`Found "${searchTerm}" at index ${index}.`)
+                      } else {
+                        //console.log(`"${searchTerm}" not found.`)
                         outputElement.innerHTML += escapedData;
-                    }
+                      }
+                    
+                        
+                    // Check if the data is not equal to the current terminal output
+                    //if (escapedData !== last_line) {
+                        // Append the escaped data to the output element
+                        
+                    //}
                 })
                 .catch(error => {
                     console.error('Error:', error);

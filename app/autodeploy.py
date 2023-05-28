@@ -15,7 +15,6 @@ def filter_sites(sites_list, data):
     return filtered_sites
 
 def init():
-    print("Starting")
     hosts = imp_exp_func.get_data_from_api(os.getenv('IMPORTER_ENDPOINT'))
     cluster_hosts = imp_exp_func.get_data_from_api(os.getenv('CLUSTER_ID'))
     headers = {'Content-type': 'application/json',
