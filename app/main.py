@@ -161,8 +161,11 @@ def read_output_changes():
     
     with open(output_path, 'r') as file:
         text = file.read()
+
+    file.close()
     
     return text
+
 
 @app.route('/output_stream')
 def output_stream():
@@ -195,6 +198,8 @@ def file_stream():
             with open(file_path, 'r') as file:
                 for line in file:
                     yield f"data: {line.strip()}\n\n"
+
+            file.close()
             
             # Send the end_stream event
             yield "event: end_stream\ndata: End of stream\n\n"
@@ -231,6 +236,7 @@ def output_current_file_stream():
         # Open the file in read mode and use a deque to efficiently retrieve the last 'num_lines' lines
         with open(file_path, 'r') as file:
             lines = deque(file, num_lines)
+        file.close()
         return lines
 
     def stream():
