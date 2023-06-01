@@ -16,15 +16,15 @@ def update_host(ip_address: str, user_name: str, headers: dict) -> bool:
 
     decorators.print_tap_window_box(details["output"], net.get_host_name(ip_address) +" GENERAL LOG")
 
-    # if check_versions(details["result"]):
+    if check_versions(details["result"]):
 
-    #     data = {
-    #         "ip_address": "10.40.30.3",
-    #         "apps": apps
-    #         }
+        data = {
+            "ip_address": "10.40.30.3",
+            "apps": apps
+            }
 
-        # try:
-        #     imp_exp_func.send_data(
-        #         os.getenv('NOTIFICATION_ENDPOINT'), data, headers)
-        # except Exception as e:
-        #     print("eeror: ", e)
+        try:
+            imp_exp_func.send_data(
+                os.getenv('NOTIFICATION_ENDPOINT'), data, headers)
+        except Exception as e:
+            print("eeror: ", e)
