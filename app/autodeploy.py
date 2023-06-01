@@ -4,7 +4,7 @@ import time
 from time import sleep
 from dotenv import load_dotenv
 load_dotenv()
-from utils import imp_exp_func, file_operations
+from utils import imp_exp_func, file_operations, xi
 from transpoter import update_host
 
 
@@ -15,8 +15,8 @@ def filter_sites(sites_list, data):
     return filtered_sites
 
 def init():
-    hosts = imp_exp_func.get_data_from_api(os.getenv('IMPORTER_ENDPOINT'))
-    cluster_hosts = imp_exp_func.get_data_from_api(os.getenv('CLUSTER_ID'))
+    hosts = xi.get_sites()
+    cluster_hosts = xi.get_cluster()
     headers = {'Content-type': 'application/json',
                'Accept': 'text/plain', 'Authorization': os.getenv('EXPORTER_KEY')}
     sites = filter_sites(hosts, cluster_hosts)

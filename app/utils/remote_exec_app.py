@@ -3,19 +3,19 @@ import asyncio
 
 async def find_bundle_dir(client: AsyncParamikoSSHClient):
     try:
-        home_dir = await client.send_command("echo $HOME")
+        home_dir = await client.send_command_for_paths("echo $HOME")
         home_dir = home_dir.decode("utf-8").strip()
 
         command = f"find {home_dir} -name bundle"
 
-        stdout = await client.send_command(command)
+        stdout = await client.send_command_for_paths(command)
         results = stdout.decode("utf-8").strip().split('\n')
 
         matching_dirs = []
         rvm_rbenv_dirs = []
         for bundle_dir in results:
             command = f"grep -liE 'rvm|rbenv' {bundle_dir}/*"
-            stdout = await client.send_command(command)
+            stdout = await client.send_command_for_paths(command)
             lines = stdout.decode("utf-8").strip().split('\n')
             rvm_rbenv_found = any(['rvm' in line.lower() or 'rbenv' in line.lower() for line in lines])
             if rvm_rbenv_found:
@@ -33,7 +33,7 @@ async def find_bundle_dir(client: AsyncParamikoSSHClient):
 
 async def find_ruby(client: AsyncParamikoSSHClient):
     try:
-        home_dir = await client.send_command("echo $HOME")
+        home_dir = await client.send_command_for_paths("echo $HOME")
         home_dir = home_dir.decode("utf-8").strip()
 
         command = f"find {home_dir} -name ruby"

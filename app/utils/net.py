@@ -4,7 +4,9 @@ import asyncio
 import paramiko
 import redis
 import aioredis
-
+from utils import xi
+import colorama
+from colorama import Fore, Style
 
 def host_is_reachable(ip_address: str) -> bool:
     """checks if remote host is reachable
@@ -47,7 +49,7 @@ class AsyncParamikoSSHClient(paramiko.SSHClient):
         stdin, stdout, stderr = channel
         decoded_stderr = stderr.read().decode("utf-8")  # Decode the stdout bytes into a string
         if decoded_stderr:
-            print(f"ERRor:\n{decoded_stderr}")
+            return f"ERRor:\n{decoded_stderr}"
         output = stdout.read()
         # self.close()
         return output
@@ -58,7 +60,19 @@ class AsyncParamikoSSHClient(paramiko.SSHClient):
         stdin, stdout, stderr = channel
         decoded_stderr = stderr.read().decode("utf-8")  # Decode the stdout bytes into a string
         if decoded_stderr:
-            print(f"ERRor:\n{decoded_stderr}")
+            # print(f"ERRor:\n{decoded_stderr}")
+            True
+        output = stdout.read()
+        # self.close()
+        return output
+    
+    async def send_command_for_paths(self, command):
+        channel = self.exec_command(command)
+        stdin, stdout, stderr = channel
+        decoded_stderr = stderr.read().decode("utf-8")  # Decode the stdout bytes into a string
+        if decoded_stderr:
+            # return f"ERRor:\n{decoded_stderr}"
+            True
         output = stdout.read()
         # self.close()
         return output
@@ -96,3 +110,11 @@ class RedisCls():
                 return value.decode('utf-8')
         except Exception as e:
             return False
+        
+def get_host_name(ip_address):
+    hosts = xi.get_sites()
+    for host in hosts:
+        if host['fields']['ip_address'] == ip_address:
+            return host['fields']['name']
+
+    return None  # Return None if no matching IP address is found

@@ -36,4 +36,4 @@ def check_versions(version_list):
                 found_versions.add(version)
                 break
     
-    return len(found_versions) == len(version_list)
+    return len(found_versions) == len(apps)

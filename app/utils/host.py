@@ -22,16 +22,25 @@ async def update_remote_host(user_name: str, ip_address: str) -> str:
         client = await check_if_password_works(ip_address, user_name)
         app_dirs = os.getenv('APP_DIRS').split(',')
         collection = []
+        output_cache = []
+        error_output = []
+        git_describe_decoded_stdout = ""
+        
         if isinstance(client,AsyncParamikoSSHClient):
             try:
                 await client.clsConnect()
 
                 for app_dir in app_dirs:
                     git_pull_cmd = f"cd {app_dir} && git pull --tags http://{os.getenv('GIT_HOST')}:{generate_git_url(app_dir)}"
-                    print(f"Git Pull Command: {git_pull_cmd}")
+                    output_cache.append(f"Git Pull Command: {git_pull_cmd}")
                     stdout = await client.send_command(git_pull_cmd)
-                    decoded_stdout = stdout.decode("utf-8")  # Decode the stdout bytes into a string
-                    print(f"Git Pull Output:\n{decoded_stdout}")
+                    try:
+                        if "ERRor:" in stdout:
+                            error_output.append(stdout)
+                    except Exception as e:
+                        decoded_stdout = stdout.decode("utf-8")  # Decode the stdout bytes into a string
+                        output_cache.append(f"Git Pull Output:\n{decoded_stdout}")
+                        
 
 
                 for app_dir in app_dirs:
@@ -40,81 +49,130 @@ async def update_remote_host(user_name: str, ip_address: str) -> str:
 
                         # Perform Git operations
                         git_checkout_cmd = f"cd {app_dir} && git checkout {tag} -f"
-                        print(f"Git Checkout Command: {git_checkout_cmd}")
+                        output_cache.append(f"Git Checkout Command: {git_checkout_cmd}")
                         stdout = await client.send_command(git_checkout_cmd)
-                        decoded_stdout = stdout.decode("utf-8")  # Decode the stdout bytes into a string
-                        print(f"Git Checkout Output:\n{decoded_stdout}")
+                        try:
+                            if "ERRor:" in stdout:
+                                error_output.append(stdout)
+                        except Exception as e:
+                            decoded_stdout = stdout.decode("utf-8")  # Decode the stdout bytes into a string
+                            output_cache.append(f"Git Checkout Output:\n{decoded_stdout}")
                         
 
                         git_describe_cmd = f"cd {app_dir} && git describe > HEAD"
-                        print(f"Git Describe Command: {git_describe_cmd}")
+                        output_cache.append(f"Git Describe Command: {git_describe_cmd}")
                         stdout = await client.send_command(git_describe_cmd)
-                        decoded_stdout = stdout.decode("utf-8")  # Decode the stdout bytes into a string
-                        print(f"Git Describe write to head Output:\n{decoded_stdout}")
+                        try:
+                            if "ERRor:" in stdout:
+                                error_output.append(stdout)
+                        except Exception as e:
+                            decoded_stdout = stdout.decode("utf-8")  # Decode the stdout bytes into a string
+                            output_cache.append(f"Git Describe write to head Output:\n{decoded_stdout}")
 
                         git_describe_cmd = f"cd {app_dir} && git describe"
-                        print(f"Git Describe Command: {git_describe_cmd}")
+                        output_cache.append(f"Git Describe Command: {git_describe_cmd}")
                         stdout = await client.send_command(git_describe_cmd)
-                        git_describe_decoded_stdout = stdout.decode("utf-8")  # Decode the stdout bytes into a string
-                        print(f"Git Describe Output:\n{git_describe_decoded_stdout}")
+                        try:
+                            if "ERRor:" in stdout:
+                                error_output.append(stdout)
+                        except Exception as e:
+                            git_describe_decoded_stdout = stdout.decode("utf-8")  # Decode the stdout bytes into a string
+                            output_cache.append(f"Git Describe Output:\n{git_describe_decoded_stdout}")
 
                         if git_describe_decoded_stdout:
                             collection.append(git_describe_decoded_stdout.strip())
 
                         if "BHT-EMR-API" in app_dir:
+
                             bundle_dirs = await find_bundle_dir(client=client)
                             for bundle_path in bundle_dirs:
                                     bundle_install_cmd = f"cd {app_dir} && {bundle_path} install --local"
-                                    print(f"Trying bundle path {bundle_path}...")
+                                    output_cache.append(f"Trying bundle path {bundle_path}...")
 
                                     stdout = await client.send_command(bundle_install_cmd)
-                                    for line in stdout.decode('utf-8').splitlines():
-                                        print(line)
+                                    try:
+                                        if "ERRor:" in stdout:
+                                            error_output.append(stdout)
+                                    except Exception as e:
+                                        for line in stdout.decode('utf-8').splitlines():
+                                            output_cache.append(line)
                                     
                             ruby_dirs = await find_ruby(client=client)
                             for ruby_path in ruby_dirs:
                                 migration_cmd = f"cd {app_dir} && {ruby_path} bin/rails db:migrate"
-                                print(f"Trying ruby path {ruby_path}...")
-
+                                output_cache.append(f"Trying ruby path {ruby_path}...")
 
                                 stdout = await client.send_command(migration_cmd)
-                                for line in stdout.decode('utf-8').splitlines():
-                                    print(line)
+                                try:
+                                    if "ERRor:" in stdout:
+                                        error_output.append(stdout)
+                                except Exception as e:
+                                    for line in stdout.decode('utf-8').splitlines():
+                                        output_cache.append(line)
                         
 
                 # Reload Nginx
                 reload_nginx_cmd = "systemctl reload nginx"
                 reload_nginx_output = await client.send_sudo_command(reload_nginx_cmd)
-                decoded_reload_nginx_output = reload_nginx_output.decode("utf-8")
-                print(f"Nginx Reload Output:\n{decoded_reload_nginx_output}")
+               
+                try:
+                    if "ERRor:" in reload_nginx_output:
+                        error_output.append(reload_nginx_output)
+                except Exception as e:
+                    decoded_reload_nginx_output = reload_nginx_output.decode("utf-8")
+                    output_cache.append(f"Nginx Reload Output:\n{decoded_reload_nginx_output}")
 
                 # Nginx Status
                 status_nginx_cmd = "systemctl status nginx"
                 status_nginx_output = await client.send_sudo_command(status_nginx_cmd)
-                decoded_status_nginx_output = status_nginx_output.decode("utf-8")
-                print(f"Nginx Status Output:\n{decoded_status_nginx_output}")
+                
+                try:
+                    if "ERRor:" in status_nginx_output:
+                        error_output.append(status_nginx_output)
+                except Exception as e:
+                    decoded_status_nginx_output = status_nginx_output.decode("utf-8")
+                    output_cache.append(f"Nginx Status Output:\n{decoded_status_nginx_output}")
                 
                 # Stop Puma service
                 stop_puma_cmd = "systemctl stop puma"
                 stop_puma_output = await client.send_sudo_command(stop_puma_cmd)
-                decoded_stop_puma_output = stop_puma_output.decode("utf-8")
-                print(f"Puma Stop Output:\n{decoded_stop_puma_output}")
+                try:
+                    if "ERRor:" in stop_puma_output:
+                        error_output.append(stop_puma_output)
+                except Exception as e:
+                    decoded_stop_puma_output = stop_puma_output.decode("utf-8")
+                    output_cache.append(f"Puma Stop Output:\n{decoded_stop_puma_output}")
                 
                 # Start Puma service
                 start_puma_cmd = "systemctl start puma"
                 start_puma_output = await client.send_sudo_command(start_puma_cmd)
-                decoded_start_puma_output = start_puma_output.decode("utf-8")
-                print(f"Puma Start Output:\n{decoded_start_puma_output}")
+                try:
+                    if "ERRor:" in start_puma_output:
+                        error_output.append(start_puma_output)
+                except Exception as e:
+                    decoded_start_puma_output = start_puma_output.decode("utf-8")
+                    output_cache.append(f"Puma Start Output:\n{decoded_start_puma_output}")
 
                 # Status Puma service
                 status_puma_cmd = "systemctl status puma"
                 status_puma_output = await client.send_sudo_command(status_puma_cmd)
-                decoded_status_puma_output = status_puma_output.decode("utf-8")
-                print(f"Puma Status Output:\n{decoded_status_puma_output}")
+                try:
+                    if "ERRor:" in status_puma_output:
+                        error_output.append(status_puma_output)
+                except Exception as e:
+                    decoded_status_puma_output = status_puma_output.decode("utf-8")
+                    output_cache.append(f"Puma Status Output:\n{decoded_status_puma_output}")
                             
 
                 client.close()
-                return collection
+
+                _data_ = {
+                    "output": output_cache,
+                    "error_output": error_output,
+                    "result": collection
+                }
+
+                return _data_
             
             except Exception as e:
                 print("An error occured fn(update_remote_host): ", e)
