@@ -28,7 +28,7 @@ def init():
 
 
         p_process = Process(target=update_host,
-                            args=(ip_address, user_name, headers,))
+                            args=(ip_address, user_name, headers,46))
         # start the process
         p_process.start()
         # add the process to the list
