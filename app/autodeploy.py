@@ -58,4 +58,7 @@ if __name__ == '__main__':
         runtime = end_time - start_time
         print("########################################################################################################")
         print("Runtime: ", runtime, " seconds")
+        print()
+        print()
+        file_operations.read_csv_contents()
         
