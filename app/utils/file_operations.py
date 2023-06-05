@@ -1,6 +1,7 @@
 import sys
 import csv
 from datetime import datetime
+import asyncio
 
 def redirect_output_to_file(file_path):
     sys.stdout = open(file_path, 'w')
@@ -10,14 +11,24 @@ def restore_output():
     sys.stdout = sys.__stdout__
 
 
-def insert_data_to_csv(ip_address, facility_name, cluster_id, status):
-    current_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    data = [current_date, ip_address, facility_name, cluster_id, status]
-    
-    with open('update_status.csv', 'a', newline='') as file:
+async def insert_data_to_csv(ip_address, facility_name, cluster_id, cluster_name, status):
+    data = [ip_address, facility_name, cluster_id, cluster_name, status]
+    updated_rows = []
+
+    # Read existing rows
+    with open('update_status.csv', 'r', newline='') as file:
+        reader = csv.reader(file)
+        for row in reader:
+            if row and row[0] != ip_address:
+                updated_rows.append(row)
+
+    updated_rows.append(data)
+
+    # Write updated rows
+    with open('update_status.csv', 'w', newline='') as file:
         writer = csv.writer(file)
-        writer.writerow(data)
-    
+        writer.writerows(updated_rows)
+
     print("Data inserted successfully.")
 
 def read_csv_contents():

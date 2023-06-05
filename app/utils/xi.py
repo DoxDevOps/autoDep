@@ -19,3 +19,8 @@ def get_cluster_id():
         if pk is not None:
             pks.append(pk)
     return pks
+
+def get_cluster_name():
+    data = get_cluster()
+    cluster_name = data[0]['fields']['name']
+    return cluster_name

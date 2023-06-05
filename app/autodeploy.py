@@ -25,12 +25,14 @@ def init():
     for site in sites:
         ip_address = site["fields"]["ip_address"]
         user_name = site["fields"]["username"]
+        host_name = site["fields"]["name"]
 
         cluster_id = xi.get_cluster_id()
+        cluster_name = xi.get_cluster_name()
 
 
         p_process = Process(target=update_host,
-                            args=(ip_address, user_name, headers,cluster_id[0]))
+                            args=(ip_address, user_name, headers,cluster_id[0], cluster_name,host_name))
         # start the process
         p_process.start()
         # add the process to the list
