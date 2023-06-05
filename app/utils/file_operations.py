@@ -12,7 +12,8 @@ def restore_output():
 
 
 async def insert_data_to_csv(ip_address, facility_name, cluster_id, cluster_name, status):
-    data = [ip_address, facility_name, cluster_id, cluster_name, status]
+    current_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    data = [current_date, ip_address, facility_name, cluster_id, cluster_name, status]
     updated_rows = []
 
     # Read existing rows
