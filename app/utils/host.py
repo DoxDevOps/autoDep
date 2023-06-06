@@ -109,6 +109,18 @@ async def update_remote_host(user_name: str, ip_address: str) -> str:
                                 except Exception as e:
                                     for line in stdout.decode('utf-8').splitlines():
                                         output_cache.append(line)
+                            
+                            # metadata upload
+                            load_metadata_cmd = f"cd {app_dir} && cd bin/ && ./update_art_metadata.sh development"
+                            output_cache.append(f"load metadata: {load_metadata_cmd}")
+                            stdout = await client.send_command(load_metadata_cmd)
+                            try:
+                                if "ERRor:" in stdout:
+                                        error_output.append(stdout)
+                            except Exception as e:
+                                for line in stdout.decode('utf-8').splitlines():
+                                        output_cache.append(line)
+
                         
 
                 # Reload Nginx

@@ -1,3 +1,17 @@
-10.40.30.11,idsr_backend (LIN OFFICE),46,autpDep,failed
-10.40.30.12,idsr_front (LIN OFFICE),46,autpDep,failed
-10.40.30.6,LIN-OFFICE,46,autpDep,updated
+2023-06-06 09:26:23,10.40.30.12,idsr_front (LIN OFFICE),46,autpDep,failed
+2023-06-06 09:26:24,10.40.30.6,LIN-OFFICE,46,autpDep,updated
+2023-06-06 09:26:24,10.40.30.11,idsr_backend (LIN OFFICE),46,autpDep,failed
+2023-06-06 09:31:14,10.40.30.11,idsr_backend (LIN OFFICE),46,autpDep,failed
+2023-06-06 09:31:14,10.40.30.12,idsr_front (LIN OFFICE),46,autpDep,failed
+2023-06-06 09:31:15,10.40.30.6,LIN-OFFICE,46,autpDep,updated
+2023-06-06 09:33:35,10.40.30.12,idsr_front (LIN OFFICE),46,autpDep,failed
+2023-06-06 09:33:36,10.40.30.11,idsr_backend (LIN OFFICE),46,autpDep,failed
+2023-06-06 09:33:37,10.40.30.6,LIN-OFFICE,46,autpDep,updated
+2023-06-06 09:47:52,10.40.30.12,idsr_front (LIN OFFICE),46,autpDep,failed
+2023-06-06 09:47:53,10.40.30.11,idsr_backend (LIN OFFICE),46,autpDep,failed
+2023-06-06 09:47:55,10.40.30.6,LIN-OFFICE,46,autpDep,updated
+2023-06-06 09:48:52,10.40.30.12,idsr_front (LIN OFFICE),46,autpDep,failed
+2023-06-06 09:48:54,10.40.30.11,idsr_backend (LIN OFFICE),46,autpDep,failed
+2023-06-06 09:48:54,10.40.30.6,LIN-OFFICE,46,autpDep,updated
+2023-06-06 09:49:45,10.8.0.246,dominic_lap_top,46,autpDep,updated
+2023-06-06 09:58:49,10.8.0.246,dominic_lap_top,46,autpDep,updated
