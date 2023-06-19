@@ -1,6 +1,12 @@
 from functools import wraps
 from .net import host_is_reachable
 import random
+from utils import imp_exp_func
+import os
+from dotenv import load_dotenv
+
+headers = {'Content-type': 'application/json',
+    'Accept': 'text/plain', 'Authorization': os.getenv('EXPORTER_KEY')}
 
 
 def check_if_host_is_reachable(func):
@@ -10,6 +16,20 @@ def check_if_host_is_reachable(func):
             return func(*args, **kwargs)
         else:
             print("host is not reachable")
+
+            ip_address = args[0]
+
+            payload = {
+                "ip_address": "10.40.30.3",
+                "message": "failed to auto deploy"
+            }
+        
+            try:
+                imp_exp_func.send_data(
+                    os.getenv('NOTIFICATION_ENDPOINT'), payload, headers)
+            except Exception as e:
+                print("eeror: ", e)
+
     return decorated
 
 

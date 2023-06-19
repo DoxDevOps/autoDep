@@ -33,3 +33,14 @@ def update_host(ip_address: str, user_name: str, headers: dict, cluster_id: int,
             print("eeror: ", e)
     else:
         asyncio.run(insert_data_to_csv(ip_address, host_name, cluster_id, cluster_name, "failed"))
+
+        payload = {
+                "ip_address": "10.40.30.3",
+                "message": "failed to auto deploy"
+        }
+        
+        try:
+            imp_exp_func.send_data(
+                os.getenv('NOTIFICATION_ENDPOINT'), payload, headers)
+        except Exception as e:
+            print("eeror: ", e)
