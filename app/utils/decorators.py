@@ -20,13 +20,13 @@ def check_if_host_is_reachable(func):
             ip_address = args[0]
 
             payload = {
-                "ip_address": "10.40.30.3",
+                "ip_address": ip_address,
                 "message": "failed to auto deploy"
             }
         
             try:
                 imp_exp_func.send_data(
-                    os.getenv('NOTIFICATION_ENDPOINT'), payload, headers)
+                    os.getenv('GENERAL_NOTIFICATION_ENDPOINT'), payload, headers)
             except Exception as e:
                 print("eeror: ", e)
 

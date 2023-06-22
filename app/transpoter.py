@@ -41,6 +41,6 @@ def update_host(ip_address: str, user_name: str, headers: dict, cluster_id: int,
         
         try:
             imp_exp_func.send_data(
-                os.getenv('NOTIFICATION_ENDPOINT'), payload, headers)
+                os.getenv('GENERAL_NOTIFICATION_ENDPOINT'), payload, headers)
         except Exception as e:
             print("eeror: ", e)
