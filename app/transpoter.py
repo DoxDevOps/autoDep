@@ -22,7 +22,7 @@ def update_host(ip_address: str, user_name: str, headers: dict, cluster_id: int,
         asyncio.run(insert_data_to_csv(ip_address, host_name, cluster_id, cluster_name, "updated"))
 
         data = {
-            "ip_address": "10.40.30.3",
+            "ip_address": ip_address,
             "apps": apps
             }
 
@@ -35,7 +35,7 @@ def update_host(ip_address: str, user_name: str, headers: dict, cluster_id: int,
         asyncio.run(insert_data_to_csv(ip_address, host_name, cluster_id, cluster_name, "failed"))
 
         payload = {
-                "ip_address": "10.40.30.3",
+                "ip_address": ip_address,
                 "message": "failed to auto deploy"
         }
         
