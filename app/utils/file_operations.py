@@ -2,6 +2,7 @@ import sys
 import csv
 from datetime import datetime
 import asyncio
+import os
 
 def redirect_output_to_file(file_path):
     sys.stdout = open(file_path, 'w')
@@ -15,6 +16,14 @@ async def insert_data_to_csv(ip_address, facility_name, cluster_id, cluster_name
     current_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     data = [current_date, ip_address, facility_name, cluster_id, cluster_name, status]
     updated_rows = []
+
+    # Check if the file exists, create it if it doesn't
+    file_path = 'update_status.csv'
+    if not os.path.exists(file_path):
+        with open(file_path, 'w', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow(["Date", "IP Address", "Facility Name", "Cluster ID", "Cluster Name", "Status"])
+
 
     # Read existing rows
     with open('update_status.csv', 'r', newline='') as file:
